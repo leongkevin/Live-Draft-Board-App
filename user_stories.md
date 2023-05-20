@@ -38,16 +38,86 @@
     * I can log out of my account and be redirected to a page displaying recent FauxTweets.
       * So that I can easily log out to keep my information secure.
 
-## FauxTweets
+## Leagues
 
-### Create FauxTweets
+### Create Leagues
 
-* As a logged in user, I want to be able to post new FauxTweets.
-  * When I'm on the `/new-fauxtweet` page:
-    * I can write and submit a new FauxTweet.
-      * So that I can share my thoughts and memes with my friends.
+* As a logged in user, I want to be able to create new leagues.
+  * When I'm on the `/` page:
+    * I can create a new leagues.
+      * So that I can have other users join my leagues.
 
-### Viewing FauxTweets
+### Viewing Leagues
+
+* As a logged in _or_ logged out user, I want to be able to view a selection of all leagues.
+  * When I'm on the `/` page:
+    * I can view a list of filterable/sortable leagues.
+      * So that I can view and join other leagues.
+
+* As a logged in _or_ logged out user, I want to be able to view the details of the specific league.
+  * When I'm on the `/league/:league_id` page:
+    * I can view the details of the league, as well as the associated teams details if the draft has already happened.
+      * So that I can view the details of the teams.
+
+### Updating Leagues
+
+* As a logged in user, if I am the owner of the league, I want to be able to update the details of the league.
+  * When I'm on the `/leagues/:league_id`:
+    * I can click "Edit" to make permanent changes to leagues I have posted.
+      * So that I can fix any errors or detail changes I make in my leagues.
+
+### Deleting Leagues
+
+* As a logged in user, if I am the owner of the league, I want to be able to update the details of the league.
+  * When I'm on the `/leagues/:league_id`:
+    * I can click "Delete" to permanently delete a FauxTweet I have posted.
+      * So that when I realize I shouldn't have publicly said something, I can easily remove it.
+
+## Teams
+
+### Create Teams
+
+* As a logged in user, I want to be able to create new team when I join a league.
+  * When I'm on the `/:league_id/teams` page:
+    * I can create a new team.
+      * So that I can join that league as a team is the only way to interact.
+
+### Viewing Teams
+
+* As a logged in _or_ logged out user, I want to be able to view a selection of all teams in a league.
+  * When I'm on the `/:league_id/:team_id` page:
+    * I can view a list of filterable/sortable teams.
+      * So that I can see the details of the teams in this league.
+
+* As a logged in _or_ logged out user, I want to be able to view a selection of all teams in a league.
+  * When I'm on the `/:league_id/:team_id` page:
+    * I can view the details of the team, as well as the associated player details if the draft has already happened.
+      * So that I can view the details of the teams and players.
+
+### Updating Teams
+
+* As a logged in user, if I am the owner of the league, I want to be able to update the details of the team if I am the team owner.
+  * When I'm on the `/:league_id/:team_id/` page:
+    * I can click "Edit" to make permanent changes to team that I have own.
+      * So that I can fix any errors or detail changes to my own team.
+
+### Deleting Teams
+
+* As a logged in user, if I am the owner of the team, I want to be able to delete the teams.
+  * When I'm on the `/:league_id/:team_id/` page:
+    * I can click "Delete" to permanently delete a team I own.
+      * So that when I don't want to play in this league, I will not ruin the league by not participating in the draft.
+
+## Players
+
+### Create Players
+
+* As a logged in user, I want to be able to draft a player to my team
+  * When I'm on the `/:league_id/:team_id/:player_id` page:
+    * I can select a player during the draft.
+      * So that I can have complete my team.
+
+### Viewing Players
 
 * As a logged in _or_ logged out user, I want to be able to view a selection of the most recent FauxTweets.
   * When I'm on the `/fauxtweets` page:
@@ -59,16 +129,46 @@
     * I can view the content of the FauxTweet, as well as the associated FauxComments and FauxLikes.
       * So that I can read and interact with the thoughts and memes of my friends, and add my own thoughts and memes in the FauxComments.
 
-### Updating FauxTweets
+### Updating Players
 
-* As a logged in user, I want to be able to edit my FauxTweets by clicking an Edit button associated with the FauxTweet anywhere that FauxTweet appears.
-  * When I'm on the `/fauxtweets`, `/fauxtweets/:id`, or `/users/:id/fauxtweets` pages:
-    * I can click "Edit" to make permanent changes to FauxTweets I have posted.
-      * So that I can fix any errors I make in my FauxTweets.
+* As a logged in user, if I am the owner of the league, I want to be able to update the details of the league.
+  * When I'm on the `/leagues/:league_id`:
+    * I can click "Edit" to make permanent changes to leagues I have posted.
+      * So that I can fix any errors or detail changes I make in my leagues.
 
-### Deleting FauxTweets
+### Deleting Players
 
 * As a logged in user, I want to be able to delete my FauxTweets by clicking a Delete button associated with the FauxTweet anywhere that FauxTweet appears.
   * When I'm on the `/fauxtweets`, `/fauxtweets/:id`, or `/users/:id/fauxtweets` pages:
     * I can click "Delete" to permanently delete a FauxTweet I have posted.
       * So that when I realize I shouldn't have publicly said something, I can easily remove it.
+
+## Draft
+
+### Create Draft
+
+* As a logged in user, if I am the owner of the league a draft is automatically created.
+  * When I'm on the `/:league_id/drafts/` page:
+    * I can make the details of the draft
+      * So that the users of my league know the details
+
+### Viewing Draft
+
+* As a logged in _or_ logged out user, I want to view the details of the draft.
+  * When I'm on the `/:league_id/drafts/:draft_id` page:
+    * I can view all the details of the draft before and after the draft time.
+      * So that I can use those details for my fantasy league season.
+
+### Updating Draft
+
+* As a logged in user, I want to be able to edit the draft if I am the owner of the league.
+  * When I'm on the `/:league_id/drafts/:draft_id` page:
+    * I can click "Edit" to make permanent changes to drafts I have posted.
+      * So that I can fix any errors I make in my draft event.
+
+### Deleting Draft
+
+* As a logged in user, I want to be able to delete my draft by clicking a Delete button associated with the draft in the draft page.
+  * When I'm on the `/:league_id/drafts/:draft_id` page:
+    * I can click "Delete" to permanently delete a draft I have posted to reset the draft.
+      * So that when there is a mistake, we can redo the draft.

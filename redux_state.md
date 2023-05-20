@@ -7,7 +7,8 @@
          user_id: 1,
          username: "Demo",
          email: "demo@aa.io",
-         league_id: 1,
+         created_at: 5/20/2023,
+         updated_at: 5/20/2023
       },
    },
    leagues: {
@@ -31,7 +32,6 @@
          team_id: 1,
          name: "The Best Team",
          user_id: 1,
-         league_id: 1,
          created_at: 5/20/2023,
          updated_at: 5/20/2023
       },
@@ -98,6 +98,7 @@
          full_name: "Stephen Wardell Curry",
          first_name: "Stephen",
          last_name: "Curry",
+         yahoo_stats: "https://sports.yahoo.com/nba/players/4612/",
          created_at: 5/20/2023,
          updated_at: 5/20/2023
       },
@@ -106,6 +107,7 @@
          full_name: "Nikola Jokic",
          first_name: "Nikola",
          last_name: "Jokic",
+         yahoo_stats: "https://sports.yahoo.com/nba/players/5352/",
          created_at: 5/20/2023,
          updated_at: 5/20/2023
       },
@@ -116,6 +118,7 @@
          full_name: "Stephen Wardell Curry",
          first_name: "Stephen",
          last_name: "Curry",
+         yahoo_stats: "https://sports.yahoo.com/nba/players/4612/",
          created_at: 5/20/2023,
          updated_at: 5/20/2023
       },
@@ -124,6 +127,7 @@
          full_name: "Nikola Jokic",
          first_name: "Nikola",
          last_name: "Jokic",
+         yahoo_stats: "https://sports.yahoo.com/nba/players/5352/",
          created_at: 5/20/2023,
          updated_at: 5/20/2023
       },
@@ -133,7 +137,8 @@
          user_id: 1,
          username: "Demo",
          email: "demo@aa.io",
-         league_id: 1,
+         created_at: 5/20/2023,
+         updated_at: 5/20/2023
       }
    },
    errors: [

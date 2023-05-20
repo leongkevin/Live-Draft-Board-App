@@ -57,11 +57,11 @@ This page displays all the details of the specific team including all displaying
 
 This page displays all the details of the specific player.
 
-* `GET /player/:player_id`
+* `GET /players/:player_id`
 
 ### Draft page / modal
 
 This page displays all the details of the draft.
 
 * `GET /:league_id/draft/`
-* `POST /:league_id/draft/:draft_id`
+* `POST /:league_id/drafts/:draft_id`
