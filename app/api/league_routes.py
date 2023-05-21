@@ -29,6 +29,7 @@ def create_leagues():
 
     return jsonify({'league': new_league.to_dict()}), 201
 
+
 @league_routes.route('', methods=['GET'])
 @login_required
 def read_leagues():
@@ -37,6 +38,7 @@ def read_leagues():
     """
     leagues = League.query.all()
     return {'leagues': [league.to_dict() for league in leagues]}
+
 
 @league_routes.route('/<int:league_id>', methods=['GET'])
 @login_required
