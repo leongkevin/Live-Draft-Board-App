@@ -23,3 +23,13 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/leagues')
+@login_required
+def leagues(id):
+    """
+    Query for all leagues and returns them in a list of user dictionaries
+    """
+    artists = User.query.filter_by(admin_id=id).all()
+    return {'leagues': [league.to_dict() for league in leagues]}

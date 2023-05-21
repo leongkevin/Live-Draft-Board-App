@@ -8,7 +8,7 @@ def seed_leagues():
         League(admin_id=2),
         League(admin_id=3),
         League(admin_id=4),
-        League(admin_id=5),
+        League(admin_id=1),
 
     ]
 

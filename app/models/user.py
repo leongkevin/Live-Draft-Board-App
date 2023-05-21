@@ -11,10 +11,10 @@ class User(db.Model, UserMixin):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    user_id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    id = db.Column(db.Integer, primary_key=True) # has to be id and not user_id or auth wont work
+    username = db.Column(db.String(55), nullable=False, unique=True)
+    email = db.Column(db.String(55), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(55), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-            'user_id': self.user_id,
+            'id': self.id,
             'username': self.username,
             'email': self.email
         }
