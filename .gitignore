@@ -8,3 +8,4 @@ __pycache__/
 /.pnp
 .pnp.js
 node_modules
+/instance/dev.db
