@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .league import leagues_users
 
 
 class User(db.Model, UserMixin):
@@ -10,12 +11,14 @@ class User(db.Model, UserMixin):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    id = db.Column(db.Integer, primary_key=True) # has to be id and not user_id or auth wont work
+    username = db.Column(db.String(55), nullable=False, unique=True)
+    email = db.Column(db.String(55), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(55), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+    leagues = db.relationship('League', secondary=leagues_users, back_populates='users')
 
     @property
     def password(self):
