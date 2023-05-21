@@ -1,11 +1,11 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, League
 
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
+@user_routes.route('/', methods=['GET'])
 @login_required
 def users():
     """
@@ -15,7 +15,7 @@ def users():
     return {'users': [user.to_dict() for user in users]}
 
 
-@user_routes.route('/<int:id>')
+@user_routes.route('/<int:id>', methods=['GET'])
 @login_required
 def user(id):
     """
@@ -25,11 +25,11 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/leagues')
+@user_routes.route('/<int:id>/leagues', methods=['GET'])
 @login_required
-def leagues(id):
+def user_leagues(id):
     """
-    Query for all leagues and returns them in a list of user dictionaries
+    Query for all the leagues of a specific player and return them in a list of user dictionaries
     """
-    artists = User.query.filter_by(admin_id=id).all()
+    leagues = League.query.filter_by(admin_id=current_user.id).all()
     return {'leagues': [league.to_dict() for league in leagues]}
