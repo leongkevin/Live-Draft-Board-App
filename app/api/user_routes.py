@@ -25,6 +25,7 @@ def user(id):
     return user.to_dict()
 
 
+# get leagues by id, then get songs from playlist
 @user_routes.route('/<int:id>/leagues', methods=['GET'])
 @login_required
 def user_leagues(id):

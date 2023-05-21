@@ -1,15 +1,62 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import League
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import League, db
+import random
 
-user_routes = Blueprint('leagus', __name__)
+import datetime
+
+today = datetime.date.today()
+current_year = today.year
+
+league_routes = Blueprint('leagues', __name__)
 
 
-@user_routes.route('/<int:league_id>')
+@league_routes.route('/', methods=['POST'])
 @login_required
-def leagues(league_id):
+def create_leagues():
     """
-    Query for all leagues and returns them in a list of user dictionaries
+    Create a new league
     """
-    leagues = League.query.filter_by(league_id=4).all()
-    return {'leagues': [league.to_dict() for league in leagues]}
+    words = [
+        "Competitive",
+        "Thrilling",
+        "Exciting",
+        "Dynamic",
+        "High-scoring",
+        "Fast-paced",
+        "Elite",
+        "Entertaining",
+        "Prestigious",
+        "Professional",
+        "Popular",
+        "Global",
+        "Diverse",
+        "Talented",
+        "Intense",
+        "Fierce",
+        "Passionate",
+        "Iconic",
+        "Historic",
+        "Progressive",
+        "Electric",
+        "Unpredictable",
+        "Well-organized",
+        "Engaging",
+        "Celebrated",
+        "Impactful",
+        "Respected",
+        "Innovative",
+        "Fanatical",
+        "Iconic"
+    ]
+
+    random_num = random.randint(1, 30)
+
+    try:
+        new_league = League(name=F"{current_user.username}'s {words[random_num]} league {current_year}", admin_id=current_user.id)
+        db.session.add(new_league)
+        db.session.commit()
+    except ValueError:
+        return "Invalid integer value."
+
+    return jsonify({'league': new_league.to_dict()}), 201
