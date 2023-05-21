@@ -28,8 +28,6 @@ def seed_users():
         username='Philip', email='philip@aa.io', password='password')
     kristen = User(
         username='Kristen', email='kristen@aa.io', password='password')
-    caleb = User(
-        username='Caleb', email='caleb@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(kevin)
@@ -43,7 +41,6 @@ def seed_users():
     db.session.add(dylan)
     db.session.add(philip)
     db.session.add(kristen)
-    db.session.add(caleb)
 
     db.session.commit()
 

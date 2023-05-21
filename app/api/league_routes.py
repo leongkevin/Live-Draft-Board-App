@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import League, db
-import random
+from .lists import words
 
+import random
 import datetime
 
 today = datetime.date.today()
@@ -17,43 +18,10 @@ def create_leagues():
     """
     Create a new league
     """
-    words = [
-        "Competitive",
-        "Thrilling",
-        "Exciting",
-        "Dynamic",
-        "High-scoring",
-        "Fast-paced",
-        "Elite",
-        "Entertaining",
-        "Prestigious",
-        "Professional",
-        "Popular",
-        "Global",
-        "Diverse",
-        "Talented",
-        "Intense",
-        "Fierce",
-        "Passionate",
-        "Iconic",
-        "Historic",
-        "Progressive",
-        "Electric",
-        "Unpredictable",
-        "Well-organized",
-        "Engaging",
-        "Celebrated",
-        "Impactful",
-        "Respected",
-        "Innovative",
-        "Fanatical",
-        "Iconic"
-    ]
-
     random_num = random.randint(1, 30)
 
     try:
-        new_league = League(name=F"{current_user.username}'s {words[random_num]} league {current_year}", admin_id=current_user.id)
+        new_league = League(name=F"{current_user.username}'s {words[random_num]} League {current_year}", admin_id=current_user.id)
         db.session.add(new_league)
         db.session.commit()
     except ValueError:
