@@ -33,4 +33,5 @@ def user_leagues(id):
     Query for all the leagues of a specific player and return them in a list of user dictionaries
     """
     leagues = League.query.filter_by(admin_id=current_user.id).all()
+    print(leagues)
     return {'leagues': [league.to_dict() for league in leagues]}

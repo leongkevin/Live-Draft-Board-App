@@ -46,5 +46,5 @@ def read_league(league_id):
     """
     View a league
     """
-    league_id = League.query.get(league_id)
-    return league_id.to_dict()
+    league = League.query.get(league_id)
+    return league.to_dict()

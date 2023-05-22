@@ -43,7 +43,6 @@ def upgrade():
     sa.Column('admin_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
-    # sa.ForeignKeyConstraint(['admin_id'], ['users.user_id'], ),
     sa.PrimaryKeyConstraint('league_id')
     )
     if environment == "production":
