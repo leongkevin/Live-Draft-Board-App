@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    # leagues = db.relationship('League', secondary=leagues_users, back_populates='users')
+    leagues = db.relationship('League', secondary=leagues_users, back_populates='users')
 
     @property
     def password(self):
