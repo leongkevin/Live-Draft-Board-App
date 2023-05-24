@@ -2,12 +2,13 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import League, db
 from .lists import words
+from datetime import datetime
 
 import random
-import datetime
+# import datetime
 
-today = datetime.date.today()
-current_year = today.year
+# today = datetime.date.today()
+# current_year = today.year
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -56,3 +57,22 @@ def delete_league(league_id):
     db.session.commit()
 
     return {"league": league.to_dict()}
+
+@league_routes.route('/<int:league_id>', methods=['PUT'])
+@login_required
+def update_league(league_id):
+    # Updates an existing league with the given id if the user is the league's admin
+    league = League.query.get(league_id)
+    print(league.admin_id)
+    print(current_user.id)
+    if league.admin_id != current_user.id:
+        return jsonify(error=["You don't have the permission to delete this league."]), 401
+
+    name = request.json.get('name')
+
+    league.name = name or league.name
+    league.updated_at = datetime.now()
+
+    db.session.commit()
+
+    return league.to_dict()
