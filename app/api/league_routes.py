@@ -15,9 +15,7 @@ league_routes = Blueprint('leagues', __name__)
 @league_routes.route('', methods=['POST'])
 @login_required
 def create_leagues():
-    """
-    Create a new league
-    """
+    # Create a new league
     random_num = random.randint(1, 30)
 
     try:
@@ -33,9 +31,7 @@ def create_leagues():
 @league_routes.route('', methods=['GET'])
 @login_required
 def read_leagues():
-    """
-    Query for all leagues and returns them in a list of user dictionaries
-    """
+    # Query for all leagues and returns them in a list of user dictionaries
     leagues = League.query.all()
     return {'leagues': [league.to_dict() for league in leagues]}
 
@@ -43,8 +39,20 @@ def read_leagues():
 @league_routes.route('/<int:league_id>', methods=['GET'])
 @login_required
 def read_league(league_id):
-    """
-    View a league
-    """
+    # View a league
     league = League.query.get(league_id)
     return league.to_dict()
+
+@league_routes.route('/<int:league_id>', methods=['DELETE'])
+@login_required
+def delete_league(league_id):
+    # Deletes an existing league with the given id if the user is the league's admin
+    league = League.query.get(league_id)
+
+    if league.admin_id != current_user.id:
+        return jsonify(error=["You don't have the permission to delete this league."]), 401
+
+    db.session.delete(league)
+    db.session.commit()
+
+    return {"league": league.to_dict()}
