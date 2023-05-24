@@ -26,4 +26,6 @@ class League(db.Model):
             'league_id': self.league_id,
             'name': self.name,
             'admin_id': self.admin_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }
