@@ -63,8 +63,8 @@ def delete_league(league_id):
 def update_league(league_id):
     # Updates an existing league with the given id if the user is the league's admin
     league = League.query.get(league_id)
-    print(league.admin_id)
-    print(current_user.id)
+    # print(league.admin_id)
+    # print(current_user.id)
     if league.admin_id != current_user.id:
         return jsonify(error=["You don't have the permission to delete this league."]), 401
 
