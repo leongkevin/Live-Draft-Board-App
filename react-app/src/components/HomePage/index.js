@@ -35,15 +35,15 @@ function HomePage() {
 			Leagues
 			{/* {leagueArray[0].name} */}
 			{leagueArray?.map((league) => {
-				// if (parseInt(league_id) === league.league_id) {
+				// if (parseInt(id) === league.id) {
 				return (
-					<div key={league.league_id} className='league-divider'>
+					<div key={league.id} className='league-divider'>
 						<NavLink
-							to={`/leagues/${league.league_id}`}
-							key={league.league_id}
+							to={`/leagues/${league.id}`}
+							key={league.id}
 						>
 							<span>{league.name} </span>
-							<span>(#{league.league_id}) </span><br/>
+							<span>(#{league.id}) </span><br/>
 							<span>user {league.admin_id} </span><br/>
               <span>{dateConverter(league.created_at)}</span><p/>
 						</NavLink>
