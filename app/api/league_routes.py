@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import League, db
-from .lists import words
+from .lists import league_words
 from datetime import datetime
 
 import random
