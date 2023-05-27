@@ -37,18 +37,18 @@ def read_leagues():
     return {'leagues': [league.to_dict() for league in leagues]}
 
 
-@league_routes.route('/<int:league_id>', methods=['GET'])
+@league_routes.route('/<int:id>', methods=['GET'])
 @login_required
-def read_league(league_id):
+def read_league(id):
     # View a league
-    league = League.query.get(league_id)
+    league = League.query.get(id)
     return league.to_dict()
 
-@league_routes.route('/<int:league_id>', methods=['DELETE'])
+@league_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def delete_league(league_id):
+def delete_league(id):
     # Deletes an existing league with the given id if the user is the league's admin
-    league = League.query.get(league_id)
+    league = League.query.get(id)
 
     if league.admin_id != current_user.id:
         return jsonify(error=["You don't have the permission to delete this league."]), 401
@@ -58,11 +58,11 @@ def delete_league(league_id):
 
     return {"league": league.to_dict()}
 
-@league_routes.route('/<int:league_id>', methods=['PUT'])
+@league_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def update_league(league_id):
+def update_league(id):
     # Updates an existing league with the given id if the user is the league's admin
-    league = League.query.get(league_id)
+    league = League.query.get(id)
     # print(league.admin_id)
     # print(current_user.id)
     if league.admin_id != current_user.id:

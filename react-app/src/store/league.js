@@ -31,7 +31,7 @@ const leagueReducer = (state = initialState, action) => {
 		case LOAD_LEAGUES: {
 			const newState = { ...state };
 			action.payload.leagues.forEach((el) => {
-				newState[el.league_id] = el;
+				newState[el.id] = el;
 				// console.log('leagueReducer', line 35:, el)
 			});
 			return newState;
