@@ -8,10 +8,10 @@ class Team(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    team_id = db.Column(db.Integer, primary_key=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(55), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    league_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('leagues.league_id')), nullable=False) # default=
+    league_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('leagues.id')), nullable=False) # default=
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
@@ -20,7 +20,7 @@ class Team(db.Model):
 
     def to_dict(self):
         return{
-            'team_id': self.team_id,
+            'id': self.id,
             'name': self.name,
             'user_id': self.user_id,
             'league_id': self.league_id,
