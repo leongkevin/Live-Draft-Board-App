@@ -13,6 +13,22 @@ import random
 league_routes = Blueprint('leagues', __name__)
 
 
+@league_routes.route('', methods=['GET'])
+# @login_required
+def read_leagues():
+    # Query for all leagues and returns them in a list of user dictionaries
+    leagues = League.query.all()
+    return {'leagues': [league.to_dict() for league in leagues]}
+
+
+@league_routes.route('/<int:id>', methods=['GET'])
+@login_required
+def read_league(id):
+    # View a league
+    league = League.query.get(id)
+    return league.to_dict()
+
+
 @league_routes.route('', methods=['POST'])
 @login_required
 def create_leagues():
@@ -28,21 +44,6 @@ def create_leagues():
 
     return jsonify({'league': new_league.to_dict()}), 201
 
-
-@league_routes.route('', methods=['GET'])
-@login_required
-def read_leagues():
-    # Query for all leagues and returns them in a list of user dictionaries
-    leagues = League.query.all()
-    return {'leagues': [league.to_dict() for league in leagues]}
-
-
-@league_routes.route('/<int:id>', methods=['GET'])
-@login_required
-def read_league(id):
-    # View a league
-    league = League.query.get(id)
-    return league.to_dict()
 
 @league_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
