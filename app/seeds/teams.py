@@ -4,8 +4,8 @@ from sqlalchemy.sql import text
 def seed_teams():
     teams = [
 
-        Team(name="Demo's Dashing Team", user_id=1),
-        Team(name="Kevin's Killer Team", user_id=1),
+        Team(name="Demo's Dashing Team", user_id=1, league_id=1),
+        Team(name="Kevin's Killer Team", user_id=1, league_id=1),
     ]
 
     for el in teams:

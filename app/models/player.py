@@ -1,6 +1,14 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
-from .league import leagues_teams_players
+
+# join table for many to many relationship between Team and Player models
+teams_players = db.Table('teams_players',
+    db.Column('team_id', db.Integer, db.ForeignKey(add_prefix_for_prod('teams.team_id')), primary_key=True),
+    db.Column('player_id', db.Integer, db.ForeignKey(add_prefix_for_prod('players.player_id')), primary_key=True),
+    # db.column('draft_id', db.Integer, primary_key=True),
+    # db.column('created_at', db.DateTime(timezone=True), server_default=func.now()),
+    # db.column('updated_at', db.DateTime(timezone=True), server_default=func.now()),
+)
 
 class Player(db.Model):
     __tablename__ = 'players'
@@ -16,17 +24,15 @@ class Player(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    leagues = db.relationship('League', secondary=leagues_teams_players, back_populates='players')
-    teams = db.relationship('Player', secondary=leagues_teams_players, back_populates='players')
+    teams = db.relationship('Team', secondary=teams_players, back_populates='players')
 
     def to_dict(self):
         return{
-            'team_id': self.team_id,
+            'player_id': self.player_id,
             'full_name': self.full_name,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'stats': self.stats,
-            'user_id': self.user_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

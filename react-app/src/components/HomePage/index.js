@@ -37,7 +37,7 @@ function HomePage() {
 			{leagueArray?.map((league) => {
 				// if (parseInt(league_id) === league.league_id) {
 				return (
-					<div key={league.league_id}>
+					<div key={league.league_id} className='league-divider'>
 						<NavLink
 							to={`/leagues/${league.league_id}`}
 							key={league.league_id}
