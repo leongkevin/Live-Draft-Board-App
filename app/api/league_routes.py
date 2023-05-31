@@ -52,7 +52,7 @@ def delete_league(id):
     league = League.query.get(id)
 
     if league.admin_id != current_user.id:
-        return jsonify(error=["You don't have the permission to delete this league."]), 401
+        return jsonify(error=["You don't have the permission to edit this league."]), 401
 
     db.session.delete(league)
     db.session.commit()
