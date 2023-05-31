@@ -5,10 +5,10 @@ from .lists import league_words
 from datetime import datetime
 
 import random
-# import datetime
 
-# today = datetime.date.today()
-# current_year = today.year
+import datetime
+today = datetime.date.today()
+current_year = today.year
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -24,7 +24,7 @@ def read_leagues():
 @league_routes.route('/<int:id>', methods=['GET'])
 @login_required
 def read_league(id):
-    # View a league
+    # View a specific league
     league = League.query.get(id)
     return league.to_dict()
 
@@ -36,7 +36,7 @@ def create_leagues():
     random_num = random.randint(1, 30)
 
     try:
-        new_league = League(name=F"{current_user.username}'s {words[random_num]} League {current_year}", admin_id=current_user.id)
+        new_league = League(name=F"{current_user.username}'s {league_words[random_num]} League {current_year}", admin_id=current_user.id)
         db.session.add(new_league)
         db.session.commit()
     except ValueError:
@@ -52,7 +52,7 @@ def delete_league(id):
     league = League.query.get(id)
 
     if league.admin_id != current_user.id:
-        return jsonify(error=["You don't have the permission to edit this league."]), 401
+        return jsonify(error=["You don't have the permission to delete this league."]), 401
 
     db.session.delete(league)
     db.session.commit()
@@ -67,7 +67,7 @@ def update_league(id):
     # print(league.admin_id)
     # print(current_user.id)
     if league.admin_id != current_user.id:
-        return jsonify(error=["You don't have the permission to delete this league."]), 401
+        return jsonify(error=["You don't have the permission to edit this league."]), 401
 
     name = request.json.get('name')
 
