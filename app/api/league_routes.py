@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import League, db
-from .lists import league_words
+from app.models import League, Team, db
+from .lists import league_words, team_words
 from datetime import datetime
 
 import random
@@ -32,13 +32,17 @@ def read_league(id):
 @league_routes.route('', methods=['POST'])
 @login_required
 def create_leagues():
-    # Create a new league
+    # Create a new league and create a team
     random_num = random.randint(1, 30)
 
     try:
         new_league = League(name=F"{current_user.username}'s {league_words[random_num]} League {current_year}", admin_id=current_user.id)
         db.session.add(new_league)
         db.session.commit()
+
+        new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=new_league.id)
+        db.session.add(new_team)
+
     except ValueError:
         return "Invalid integer value."
 
@@ -77,3 +81,19 @@ def update_league(id):
     db.session.commit()
 
     return league.to_dict()
+
+
+@league_routes.route('/<int:id>/teams', methods=['POST'])
+@login_required
+def create_team(id):
+    # Create a new team in the current league
+    random_num = random.randint(1, 35)
+
+    try:
+        new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=id)
+        db.session.add(new_team)
+        db.session.commit()
+    except ValueError:
+        return "Invalid integer value."
+
+    return jsonify({'team': new_team.to_dict()}), 201

@@ -5,10 +5,10 @@ from .lists import team_words
 from datetime import datetime
 
 import random
-# import datetime
+import datetime
 
-# today = datetime.date.today()
-# current_year = today.year
+today = datetime.date.today()
+current_year = today.year
 
 team_routes = Blueprint('teams', __name__)
 
