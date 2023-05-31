@@ -43,10 +43,11 @@ def create_leagues():
         new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=new_league.id)
         db.session.add(new_team)
 
+        data = new_team.query.get('id') # why did this update the dictionary
     except ValueError:
         return "Invalid integer value."
 
-    return jsonify({'league': new_league.to_dict()}), 201
+    return jsonify({'league': new_league.to_dict()}, {'team': new_team.to_dict()}), 201
 
 
 @league_routes.route('/<int:id>', methods=['DELETE'])
