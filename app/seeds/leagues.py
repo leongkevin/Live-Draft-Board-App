@@ -4,12 +4,13 @@ from sqlalchemy.sql import text
 def seed_leagues():
     leagues = [
 
-        League(admin_id=1),
-        League(admin_id=2),
-        League(admin_id=3),
-        League(admin_id=4),
-        League(admin_id=1),
-
+        League(admin_id=1, name="Demo's Dashing League 2023"),
+        League(admin_id=2, name="Kevin's Killer League 2023"),
+        League(admin_id=3, name="James' Justice League 2023"),
+        League(admin_id=4, name="Crystal's Country League 2023"),
+        League(admin_id=5, name="Bill's Best League 2023"),
+        League(admin_id=1, name="Demo's Demon League 2023"),
+        League(admin_id=2, name="Kevin's Known League 2023"),
     ]
 
     for el in leagues:

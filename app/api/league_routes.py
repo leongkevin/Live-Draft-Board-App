@@ -1,23 +1,38 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import League, db
-from .lists import words
+from .lists import league_words
+from datetime import datetime
 
 import random
-import datetime
+# import datetime
 
-today = datetime.date.today()
-current_year = today.year
+# today = datetime.date.today()
+# current_year = today.year
 
 league_routes = Blueprint('leagues', __name__)
+
+
+@league_routes.route('', methods=['GET'])
+# @login_required
+def read_leagues():
+    # Query for all leagues and returns them in a list of user dictionaries
+    leagues = League.query.all()
+    return {'leagues': [league.to_dict() for league in leagues]}
+
+
+@league_routes.route('/<int:id>', methods=['GET'])
+@login_required
+def read_league(id):
+    # View a league
+    league = League.query.get(id)
+    return league.to_dict()
 
 
 @league_routes.route('', methods=['POST'])
 @login_required
 def create_leagues():
-    """
-    Create a new league
-    """
+    # Create a new league
     random_num = random.randint(1, 30)
 
     try:
@@ -29,20 +44,36 @@ def create_leagues():
 
     return jsonify({'league': new_league.to_dict()}), 201
 
-@league_routes.route('', methods=['GET'])
-@login_required
-def read_leagues():
-    """
-    Query for all leagues and returns them in a list of user dictionaries
-    """
-    leagues = League.query.all()
-    return {'leagues': [league.to_dict() for league in leagues]}
 
-@league_routes.route('/<int:league_id>', methods=['GET'])
+@league_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def read_league(league_id):
-    """
-    View a league
-    """
-    league_id = League.query.get(league_id)
-    return league_id.to_dict()
+def delete_league(id):
+    # Deletes an existing league with the given id if the user is the league's admin
+    league = League.query.get(id)
+
+    if league.admin_id != current_user.id:
+        return jsonify(error=["You don't have the permission to delete this league."]), 401
+
+    db.session.delete(league)
+    db.session.commit()
+
+    return {"league": league.to_dict()}
+
+@league_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_league(id):
+    # Updates an existing league with the given id if the user is the league's admin
+    league = League.query.get(id)
+    # print(league.admin_id)
+    # print(current_user.id)
+    if league.admin_id != current_user.id:
+        return jsonify(error=["You don't have the permission to delete this league."]), 401
+
+    name = request.json.get('name')
+
+    league.name = name or league.name
+    league.updated_at = datetime.now()
+
+    db.session.commit()
+
+    return league.to_dict()

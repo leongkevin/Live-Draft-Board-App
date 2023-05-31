@@ -1,6 +1,4 @@
-
-
-words = [
+league_words = [
         "Competitive",
         "Thrilling",
         "Exciting",
@@ -32,3 +30,15 @@ words = [
         "Fanatical",
         "Iconic"
     ]
+
+team_words = [
+    "Dominant", "Majestic", "Unstoppable", "Powerful", "Spectacular",
+    "Extraordinary", "Mythical", "Unpredictable", "Talented", "Versatile",
+    "Creative", "Tenacious", "Unbreakable", "Fearless", "Explosive",
+    "Flawless", "Resilient", "Unrivaled", "Phenomenal", "Exciting",
+    "Mesmerizing", "Unmatched", "Unconquerable", "Innovative", "Dauntless",
+    "Agile", "Charismatic", "Unforgettable", "Electric", "Unfathomable",
+    "Inspirational", "Enigmatic", "Magical", "Ruthless", "Formidable",
+    "Brilliant", "Versatile", "Awe-inspiring", "Supernatural", "Unyielding",
+    "Pioneering", "Unbelievable", "Ruthless", "Unorthodox", 
+]

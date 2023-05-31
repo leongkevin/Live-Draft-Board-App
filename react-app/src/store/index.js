@@ -1,10 +1,22 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import leagueReducer from './league'
 
 const rootReducer = combineReducers({
   session,
+  leagueReducer,
 });
+
+// import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+// import thunk from 'redux-thunk';
+// import session from './session'
+// import leagueReducer from './league'
+
+// const rootReducer = combineReducers({
+// 	session: sessionReducer,
+// 	league: leagueReducer,
+// });
 
 
 let enhancer;
