@@ -40,7 +40,7 @@ def create_leagues():
         db.session.add(new_league)
         db.session.commit()
 
-        new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=new_league.id)
+        new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=new_league.id)
         db.session.add(new_team)
 
         data = new_team.query.get('id') # why did this update the dictionary

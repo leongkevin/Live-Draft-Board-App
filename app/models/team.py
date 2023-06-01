@@ -1,6 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
-from .player import teams_players
+# from .player import teams_players
+from .teamplayer import TeamPlayer
+from sqlalchemy.ext.associationproxy import association_proxy
 
 class Team(db.Model):
     __tablename__ = 'teams'
@@ -15,7 +17,12 @@ class Team(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    players = db.relationship('Player', secondary=teams_players, back_populates='teams')
+    # players = db.relationship('Player', secondary=teams_players, back_populates='teams')
+
+    players = db.relationship('TeamPlayer', back_populates='team')
+
+    # player_association = db.relationship('TeamPlayer', back_populates='team')
+    # players = association_proxy('player_association', 'player')
 
 
     def to_dict(self):
