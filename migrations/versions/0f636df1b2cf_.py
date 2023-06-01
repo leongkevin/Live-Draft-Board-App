@@ -102,7 +102,7 @@ def upgrade():
     #     op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###qqqqqqqqq
 
-    op.create_table('teams_players',
+    op.create_table('drafts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team_id', sa.Integer(), nullable=False),
     sa.Column('player_id', sa.Integer(), nullable=False),
@@ -125,5 +125,5 @@ def downgrade():
     op.drop_table('leagues_users')
     op.drop_table('teams')
     op.drop_table('players')
-    op.drop_table('teams_players')
+    op.drop_table('drafts')
     # ### end Alembic commands ###

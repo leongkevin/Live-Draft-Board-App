@@ -2,8 +2,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 from sqlalchemy.ext.associationproxy import association_proxy
 
-class TeamPlayer(db.Model):
-    __tablename__ = 'teams_players'
+class Draft(db.Model):
+    __tablename__ = 'drafts'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}

@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 # from .player import teams_players
-from .teamplayer import TeamPlayer
+from .draft import Draft
 from sqlalchemy.ext.associationproxy import association_proxy
 
 class Team(db.Model):
@@ -19,7 +19,7 @@ class Team(db.Model):
 
     # players = db.relationship('Player', secondary=teams_players, back_populates='teams')
 
-    players = db.relationship('TeamPlayer', back_populates='team')
+    players = db.relationship('Draft', back_populates='team')
 
     # player_association = db.relationship('TeamPlayer', back_populates='team')
     # players = association_proxy('player_association', 'player')

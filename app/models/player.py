@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
-from .teamplayer import TeamPlayer
+from .draft import Draft
 from sqlalchemy.ext.associationproxy import association_proxy
 
 # # join table for many to many relationship between Team and Player models
@@ -28,7 +28,7 @@ class Player(db.Model):
 
     # teams = db.relationship('Team', secondary=teams_players, back_populates='players')
 
-    team_association = db.relationship('TeamPlayer', back_populates='player')
+    team_association = db.relationship('Draft', back_populates='player')
     teams = association_proxy('team_association', 'team')
 
     def to_dict(self):
