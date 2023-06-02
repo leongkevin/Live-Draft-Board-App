@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .leagues import seed_leagues, undo_leagues
 from .teams import seed_teams, undo_teams
 from .players import seed_players, undo_players
+from .drafts import seed_drafts, undo_drafts
 
 from app.models.db import db, environment, SCHEMA
 
@@ -23,10 +24,12 @@ def seed():
         undo_leagues()
         undo_teams()
         undo_players()
+        undo_drafts()
     seed_users()
     seed_leagues()
     seed_teams()
     seed_players()
+    seed_drafts()
     # Add other seed functions here
 
 
