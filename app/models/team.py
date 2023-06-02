@@ -13,13 +13,13 @@ class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(55), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    league_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('leagues.id')), nullable=False) # default=
+    league_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('leagues.id'))) # default=
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     # players = db.relationship('Player', secondary=teams_players, back_populates='teams')
 
-    players = db.relationship('Draft', back_populates='team')
+    players = db.relationship('Draft', back_populates='team', passive_deletes=True)
 
     # player_association = db.relationship('TeamPlayer', back_populates='team')
     # players = association_proxy('player_association', 'player')
