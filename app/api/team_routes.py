@@ -47,6 +47,7 @@ def delete_team(id):
 
     return {"team": team.to_dict()}
 
+
 @team_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_team(id):
