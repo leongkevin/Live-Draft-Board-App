@@ -22,7 +22,7 @@ function LeaguesPage(id) {
 
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let month = date.getMonth();
-    console.log(month)
+
     let day = date.getDate();
     let year = date.getFullYear();
     let monthByName = months[month]
