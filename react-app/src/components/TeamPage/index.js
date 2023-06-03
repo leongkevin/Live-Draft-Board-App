@@ -45,6 +45,7 @@ function TeamPage() {
 			})}
 
 			{playersArray?.map((player) => {
+				
 				return (
 					<NavLink
 						to={{ pathname: `https://${player.stats}` }}

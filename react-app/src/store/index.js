@@ -4,14 +4,14 @@ import session from './session'
 import leagueReducer from './league'
 import teamReducer from './team'
 import playerReducer from './player'
-// import draftReducer from './draft'
+import draftReducer from './draft'
 
 const rootReducer = combineReducers({
   session,
   leagueReducer,
   teamReducer,
   playerReducer,
-  // draftReducer
+  draftReducer
 });
 
 let enhancer;

@@ -47,21 +47,21 @@ function LeaguePage() {
 				// console.log(`this is line 39: ${team_id}`)
 				if (parseInt(league_id) === team.league_id) {
 					return (
-						<NavLink
-						to={`/teams/${team.id}`}
-						key={team.id}
-						>
-						<div key={team.id} className="team-divider">
-							Team {team.id}
-							<br />
-							<span>{team.name} </span>
-							<span>(#{team.id}) </span>
-							<br />
-						</div>
+						<NavLink to={`/teams/${team.id}`} key={team.id}>
+							<div key={team.id} className="team-divider">
+								Team {team.id}
+								<br />
+								<span>{team.name} </span>
+								<span>(#{team.id}) </span>
+								<br />
+							</div>
 						</NavLink>
 					);
 				}
 			})}
+			<NavLink to={`/leagues/${league_id}/drafts`} key={league_id}>
+				<button>Draft</button>
+			</NavLink>
 		</>
 	);
 }
