@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import leagueReducer from './league'
+import teamReducer from './team'
 
 const rootReducer = combineReducers({
   session,
   leagueReducer,
+  teamReducer
 });
 
 // import { createStore, combineReducers, applyMiddleware, compose } from 'redux';

@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import DraftPage from "./components/DraftPage";
 import LeaguesPage from "./components/LeaguesPage";
 import LeaguePage from "./components/LeaguePage";
+import TeamPage from "./components/TeamPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path="/leagues">
             <LeaguesPage />
+          </Route>
+          <Route exact path="/teams/:team_id">
+            <TeamPage />
           </Route>
 
           <Route exact path="/">

@@ -26,7 +26,6 @@ function LeaguePage() {
 							League {league.id}<br/>
 							<span>{league.name} </span>
 							<span>(#{league.id}) </span><br/>
-
 					</div>
 				);
 				}
