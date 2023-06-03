@@ -13,6 +13,7 @@ def seed_players():
         Player(full_name="Joel Embiid", first_name="Joel", last_name="Embiid", stats="https://sports.yahoo.com/nba/players/3827"),
         Player(full_name="Nikola Jokic", first_name="Nikola", last_name="Jokic", stats="https://sports.yahoo.com/nba/players/5184"),
         Player(full_name="Luka Doncic", first_name="Luka", last_name="Doncic", stats="https://sports.yahoo.com/nba/players/4609"),
+
 ]
 
     for el in players:
