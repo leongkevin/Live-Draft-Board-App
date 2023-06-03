@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { getLeagues } from '../../store/league';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import './LeaguesPage.css';
 
-function LeaguesPage() {
+function LeaguesPage(id) {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const leagueObject = useSelector((state) => state.leagueReducer);
 	const leagueArray = Object.values(leagueObject);
 	// console.log(`HomePage, leagueArray: ${leagueArray}`);
+	const { league_id } = useParams();
 
 	useEffect(() => {
 		dispatch(getLeagues(leagueArray));
@@ -35,7 +36,7 @@ function LeaguesPage() {
 			My Leagues:
 			{/* {leagueArray[0].name} */}
 			{leagueArray?.map((league) => {
-				console.log(parseInt(sessionUser?.id))
+				console.log(parseInt(league.id))
 				if (parseInt(sessionUser?.id) === league.admin_id) {
 				return (
 					<div key={league.id} className='league-divider'>

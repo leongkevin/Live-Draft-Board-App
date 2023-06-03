@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import DraftPage from "./components/DraftPage";
 import LeaguesPage from "./components/LeaguesPage";
+import LeaguePage from "./components/LeaguePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route exact path="/leagues/:league_id/draft">
             <DraftPage />
+          </Route>
+          <Route exact path="/leagues/:league_id">
+            <LeaguePage />
           </Route>
           <Route exact path="/leagues">
             <LeaguesPage />
