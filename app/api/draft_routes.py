@@ -10,7 +10,7 @@ draft_routes = Blueprint('drafts', __name__)
 @draft_routes.route('', methods=['GET'])
 @login_required
 def read_drafts():
-    # Query for all players and returns them in a list of user dictionaries
+    # Query for all players in a draft and returns them in a list of user dictionaries
     drafts = Draft.query.all()
     return {'drafts': [draft.to_dict() for draft in drafts]}
 
@@ -37,6 +37,3 @@ def delete_draft(id):
     db.session.commit()
 
     return {"draft": draft.to_dict()}
-
-
-
