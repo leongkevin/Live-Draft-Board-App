@@ -10,9 +10,10 @@ const loadPlayers = (players) => ({
 
 // // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
 export const getPlayers = () => async (dispatch) => {
-	const response = await fetch(`/api/players`);
-	const players = await response.json();
-	console.log(players)
+	// const response = await fetch(`/api/players`);
+	// const players = await response.json();
+	// console.log(response)
+	// console.log(players)
 	try {
 		const response = await fetch('/api/players');
 		console.log(response)
