@@ -40,5 +40,5 @@ team_words = [
     "Agile", "Charismatic", "Unforgettable", "Electric", "Unfathomable",
     "Inspirational", "Enigmatic", "Magical", "Ruthless", "Formidable",
     "Brilliant", "Versatile", "Awe-inspiring", "Supernatural", "Unyielding",
-    "Pioneering", "Unbelievable", "Ruthless", "Unorthodox", 
+    "Pioneering", "Unbelievable", "Ruthless", "Unorthodox", "Best"
 ]

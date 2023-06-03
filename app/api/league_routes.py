@@ -1,14 +1,14 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import League, db
-from .lists import league_words
+from app.models import League, Team, db
+from .lists import league_words, team_words
 from datetime import datetime
 
 import random
-# import datetime
 
-# today = datetime.date.today()
-# current_year = today.year
+import datetime
+today = datetime.date.today()
+current_year = today.year
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -24,7 +24,7 @@ def read_leagues():
 @league_routes.route('/<int:id>', methods=['GET'])
 @login_required
 def read_league(id):
-    # View a league
+    # View a specific league
     league = League.query.get(id)
     return league.to_dict()
 
@@ -32,17 +32,22 @@ def read_league(id):
 @league_routes.route('', methods=['POST'])
 @login_required
 def create_leagues():
-    # Create a new league
+    # Create a new league and create a team
     random_num = random.randint(1, 30)
 
     try:
-        new_league = League(name=F"{current_user.username}'s {words[random_num]} League {current_year}", admin_id=current_user.id)
+        new_league = League(name=F"{current_user.username}'s {league_words[random_num]} League {current_year}", admin_id=current_user.id)
         db.session.add(new_league)
         db.session.commit()
+
+        new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=new_league.id)
+        db.session.add(new_team)
+
+        data = new_team.query.get('id') # why did this update the dictionary
     except ValueError:
         return "Invalid integer value."
 
-    return jsonify({'league': new_league.to_dict()}), 201
+    return jsonify({'league': new_league.to_dict()}, {'team': new_team.to_dict()}), 201
 
 
 @league_routes.route('/<int:id>', methods=['DELETE'])
@@ -67,7 +72,7 @@ def update_league(id):
     # print(league.admin_id)
     # print(current_user.id)
     if league.admin_id != current_user.id:
-        return jsonify(error=["You don't have the permission to delete this league."]), 401
+        return jsonify(error=["You don't have the permission to edit this league."]), 401
 
     name = request.json.get('name')
 
@@ -77,3 +82,19 @@ def update_league(id):
     db.session.commit()
 
     return league.to_dict()
+
+
+@league_routes.route('/<int:id>/teams', methods=['POST'])
+@login_required
+def create_team(id):
+    # Create a new team in the current league
+    random_num = random.randint(1, 35)
+
+    try:
+        new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=id)
+        db.session.add(new_team)
+        db.session.commit()
+    except ValueError:
+        return "Invalid integer value."
+
+    return jsonify({'team': new_team.to_dict()}), 201

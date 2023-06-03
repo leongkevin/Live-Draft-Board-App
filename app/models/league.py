@@ -20,7 +20,7 @@ class League(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     users = db.relationship('User', secondary=leagues_users, back_populates='leagues')
-    teams = db.relationship('Team', foreign_keys='Team.league_id')
+    teams = db.relationship('Team', foreign_keys='Team.league_id', cascade="all,delete")
 
     def to_dict(self):
         return{

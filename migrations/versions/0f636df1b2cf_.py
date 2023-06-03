@@ -91,9 +91,23 @@ def upgrade():
     ### end Alembic commands ###qqqqqqqqq
 
 
-    op.create_table('teams_players',
+    # op.create_table('teams_players',
+    # sa.Column('team_id', sa.Integer(), nullable=False),
+    # sa.Column('player_id', sa.Integer(), nullable=False),
+    # sa.ForeignKeyConstraint(['team_id'], ['teams.id'], ),
+    # sa.ForeignKeyConstraint(['player_id'], ['players.id'], ),
+    # sa.PrimaryKeyConstraint('team_id', 'player_id')
+    # )
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
+    op.create_table('drafts',
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team_id', sa.Integer(), nullable=False),
-    sa.Column('player_id', sa.Integer(), nullable=False),
+    sa.Column('player_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['team_id'], ['teams.id'], ),
     sa.ForeignKeyConstraint(['player_id'], ['players.id'], ),
     sa.PrimaryKeyConstraint('team_id', 'player_id')
@@ -111,5 +125,5 @@ def downgrade():
     op.drop_table('leagues_users')
     op.drop_table('teams')
     op.drop_table('players')
-    op.drop_table('teams_players')
+    op.drop_table('drafts')
     # ### end Alembic commands ###

@@ -6,6 +6,11 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
+import DraftPage from "./components/DraftPage";
+import LeaguesPage from "./components/LeaguesPage";
+import LeaguePage from "./components/LeaguePage";
+import TeamsPage from "./components/TeamsPage";
+import TeamPage from "./components/TeamPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +30,23 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/leagues/:league_id/draft">
+            <DraftPage />
+          </Route>
+          <Route exact path="/leagues/:league_id">
+            <LeaguePage />
+          </Route>
+          <Route exact path="/leagues">
+            <LeaguesPage />
+          </Route>
+          <Route exact path="/teams/:team_id">
+            <TeamPage />
+          </Route>
+          <Route exact path="/teams/">
+            <TeamsPage />
+          </Route>
+
+          <Route exact path="/">
             <HomePage />
           </Route>
         </Switch>
