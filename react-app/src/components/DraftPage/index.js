@@ -15,25 +15,10 @@ function DraftPage() {
 		dispatch(getLeagues(leagueArray));
 	}, [dispatch]);
 
-  const dateConverter = (dateString) => {
-    let timestamp = Date.parse(dateString);
-    let date = new Date(timestamp);
-
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    let month = date.getMonth();
-    console.log(month)
-    let day = date.getDate();
-    let year = date.getFullYear();
-    let monthByName = months[month]
-
-    let formattedDate = `${monthByName} ${day}, ${year}`;
-    return formattedDate;
-  }
-
 	return (
 		<>
 			Drafts Date/Time:
-			{/* {leagueArray?.map((league) => {
+			{leagueArray?.map((league) => {
 				// if (parseInt(id) === league.id) {
 				return (
 					<div key={league.id} className='league-divider'>
@@ -42,12 +27,11 @@ function DraftPage() {
 							key={league.id}
 						>
 							<span>{league.name} </span>
-              <span>{dateConverter(league.created_at)}</span><p/>
 						</NavLink>
 					</div>
 				);
 				// }
-			})} */}
+			})}
 		</>
 	);
 }

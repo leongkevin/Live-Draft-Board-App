@@ -46,18 +46,20 @@ function TeamPage() {
 			})}
 
 			{playersArray?.map((player) => {
-
 				return (
-					<NavLink
-						to={{ pathname: `https://${player.stats}` }}
-						target="_blank"
-					>
-						<div key={player.id} className="player-divider">
+					<div key={player.id} className="player-divider">
+						<NavLink
+							to={{ pathname: `https://${player.stats}` }}
+							target="_blank"
+						>
 							<span>{player.full_name} </span>
 							<br />
-							<img src={player.profile_image}/>
-						</div>
-					</NavLink>
+							<img
+								src={player.profile_image}
+								className="player-divider"
+							/>
+						</NavLink>
+					</div>
 				);
 			})}
 		</>
