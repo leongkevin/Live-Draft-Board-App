@@ -16,6 +16,7 @@ class League(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(55), nullable=False)
     admin_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False) # default=
+    draft_date = db.Column(db.DateTime(timezone=True), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
@@ -27,6 +28,7 @@ class League(db.Model):
             'id': self.id,
             'name': self.name,
             'admin_id': self.admin_id,
+            'draft_date': self.draft_date,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

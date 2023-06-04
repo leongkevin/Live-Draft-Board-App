@@ -32,9 +32,8 @@ function DraftPage() {
 
 	return (
 		<>
-			Drafts Time:
-			{/* {leagueArray[0].name} */}
-			{leagueArray?.map((league) => {
+			Drafts Date/Time:
+			{/* {leagueArray?.map((league) => {
 				// if (parseInt(id) === league.id) {
 				return (
 					<div key={league.id} className='league-divider'>
@@ -48,7 +47,7 @@ function DraftPage() {
 					</div>
 				);
 				// }
-			})}
+			})} */}
 		</>
 	);
 }

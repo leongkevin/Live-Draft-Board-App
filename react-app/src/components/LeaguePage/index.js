@@ -60,7 +60,7 @@ function LeaguePage() {
 				}
 			})}
 			<NavLink to={`/leagues/${league_id}/drafts`} key={league_id}>
-				<button>Draft</button>
+				<button>Enter Draft</button>
 			</NavLink>
 		</>
 	);

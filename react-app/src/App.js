@@ -30,7 +30,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/leagues/:league_id/draft">
+          <Route exact path="/leagues/:league_id/drafts">
             <DraftPage />
           </Route>
           <Route exact path="/leagues/:league_id">

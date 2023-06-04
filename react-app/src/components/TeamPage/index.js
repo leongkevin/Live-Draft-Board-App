@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTeam } from '../../store/team';
 import { getPlayers } from '../../store/player';
+import { getDraft } from '../../store/draft';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import './TeamPage.css';
@@ -45,7 +46,7 @@ function TeamPage() {
 			})}
 
 			{playersArray?.map((player) => {
-				
+
 				return (
 					<NavLink
 						to={{ pathname: `https://${player.stats}` }}
@@ -54,6 +55,7 @@ function TeamPage() {
 						<div key={player.id} className="player-divider">
 							<span>{player.full_name} </span>
 							<br />
+							<img src={player.profile_image}/>
 						</div>
 					</NavLink>
 				);
