@@ -8,7 +8,7 @@ const loadDraft = (draft) => ({
 	payload: draft,
 });
 
-const postDraft = () => ({
+const postDraft = (draft) => ({
 	type: POST_DRAFT,
 	payload: draft,
 });
@@ -43,10 +43,10 @@ export const draftPlayer = (data) => async (dispatch) => {
 		});
 
 		if (response.ok) {
-			const draft = await res.json();
+			const draft = await response.json();
 			dispatch(postDraft(draft));
 			return draft;
-		} else return res.json();
+		} else return response.json();
 	} catch (err) {
 		return err;
 	}
@@ -68,7 +68,7 @@ const draftReducer = (state = initialState, action) => {
 
 		case POST_DRAFT: {
 			const newState = { ...state };
-			return { ...newState, [action.playload.id]: action.payload };
+			return { ...newState, [action.payload.id]: action.payload };
 		}
 
 		default: {
