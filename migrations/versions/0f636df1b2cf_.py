@@ -34,7 +34,7 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE follows SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###qqqqqqqqq
 
 
@@ -48,7 +48,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE leagues SET SCHEMA {SCHEMA};")
     ### end Alembic commands ###qqqqqqqqq
 
     op.create_table('teams',
@@ -61,7 +61,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE teams SET SCHEMA {SCHEMA};")
     ### end Alembic commands ###qqqqqqqqq
 
 
@@ -78,7 +78,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE players SET SCHEMA {SCHEMA};")
     ### end Alembic commands ###qqqqqqqqq
 
 
@@ -90,7 +90,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('league_id', 'user_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE league_users SET SCHEMA {SCHEMA};")
     ### end Alembic commands ###qqqqqqqqq
 
 
@@ -116,7 +116,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('team_id', 'player_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE drafts SET SCHEMA {SCHEMA};")
     ### end Alembic commands ###qqqqqqqqq
 
 
