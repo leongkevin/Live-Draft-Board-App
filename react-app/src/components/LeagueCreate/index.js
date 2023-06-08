@@ -20,72 +20,49 @@ function LeagueCreate() {
 		e.preventDefault();
 		setErrors([]);
 
-	// 	try {
-	// 		const league = await dispatch(
-	// 			createLeagueAction({
-	// 				name,
-	// 				admin_id: sessionUser.id,
-	// 				draft_date: draftDate,
-	// 			})
-	// 		);
-	// 		// await history.push(`/leagues/${league.id}`);
-	// 		.then(closeModal)
-	// 	} catch (errors) {
-	// 		alert(errors);
-	// 	}
-	// };
+		// 	try {
+		// 		const league = await dispatch(
+		// 			createLeagueAction({
+		// 				name,
+		// 				admin_id: sessionUser.id,
+		// 				draft_date: draftDate,
+		// 			})
+		// 		);
+		// 		// await history.push(`/leagues/${league.id}`);
+		// 		.then(closeModal)
+		// 	} catch (errors) {
+		// 		alert(errors);
+		// 	}
+		// };
 
-	try {
-		const league = await dispatch(
-			createLeagueAction({
-				name: name,
-				draft_date: draftDate,
-			})
-		)
-		.then(history.push("/leagues"))
-	} catch (errors) {
-		alert(errors);
-	}
-};
+		try {
+			const league = await dispatch(
+				createLeagueAction({
+					name: name,
+					draft_date: draftDate,
+				})
+			).then(history.push('/leagues'));
+		} catch (errors) {
+			alert(errors);
+		}
+	};
 	return (
 		<>
 			<div className="league">
-				<h2>Create League</h2>
-
 				<form className="league-form" onSubmit={handleCreateLeague}>
-
-						{errors.length ? <h3>Errors</h3> : ''}
-						<div className="errors">
-							{errors.map((error, idx) => (
-								<li key={idx}>{errors}</li>
-							))}
-						</div>
-
-
-					<label className="league-form">Name</label>
-					<input
-						className="league-form-input"
-						type="text"
-						placeholder="Name"
-						onChange={(e) => setName(e.target.value)}
-						required
-					/>
-
-					<label className="song-modal-label">Draft Date</label>
-					<input
-						className="league-form-input"
-						type="date"
-						placeholder="Draft Date"
-						onChange={(e) => setDraftDate(e.target.value)}
-						required
-					/>
+					{errors.length ? <h3>Errors</h3> : ''}
+					<div className="errors">
+						{errors.map((error, idx) => (
+							<li key={idx}>{errors}</li>
+						))}
+					</div>
 
 					<button
 						className="league-form-button"
 						type="submit"
 						disabled={errors.length ? true : false}
 					>
-						Create
+						<h2>Create League</h2>
 					</button>
 				</form>
 			</div>

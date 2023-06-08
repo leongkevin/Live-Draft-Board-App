@@ -78,7 +78,7 @@ def update_league(id):
     draft_date = request.json.get('draft_date')
 
     league.name = name or league.name
-    league.draft_date = draft_date or league.draft_date
+    # league.draft_date = draft_date or league.draft_date
     league.updated_at = datetime.now()
 
     db.session.commit()

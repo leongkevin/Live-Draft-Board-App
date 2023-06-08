@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getLeagues } from '../../store/league';
+import { getLeagues, deleteLeagueAction } from '../../store/league';
 import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
@@ -20,6 +20,12 @@ function LeaguePage() {
 	// console.log(teamObject)
 
 	const { league_id } = useParams();
+
+	const handleDeleteLeague = async (e) => {
+		e.preventDefault();
+
+		dispatch(deleteLeagueAction(league_id));
+	};
 
 	useEffect(() => {
 		dispatch(getLeagues(leagueArray));
@@ -42,6 +48,12 @@ function LeaguePage() {
 									<LeagueUpdateModal league={league} />
 								}
 							/>
+							<button
+								className="league-divider"
+								onClick={handleDeleteLeague}
+							>
+								Delete League
+							</button>
 						</div>
 					);
 				}
@@ -63,9 +75,9 @@ function LeaguePage() {
 					);
 				}
 			})}
-			<NavLink to={`/leagues/${league_id}/drafts`} key={league_id}>
+			{/* <NavLink to={`/leagues/${league_id}/drafts`} key={league_id}>
 				<button>Enter Draft</button>
-			</NavLink>
+			</NavLink> */}
 		</>
 	);
 }
