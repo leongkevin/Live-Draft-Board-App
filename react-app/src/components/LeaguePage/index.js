@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getLeagues, deleteLeagueAction } from '../../store/league';
 import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import './LeaguePage.css';
 
 import OpenModalButton from '../OpenModalButton';
@@ -10,6 +10,8 @@ import LeagueUpdateModal from '../LeagueUpdateModal';
 
 function LeaguePage() {
 	const dispatch = useDispatch();
+	const history = useHistory();
+
 	const sessionUser = useSelector((state) => state.session.user);
 	const leagueObject = useSelector((state) => state.leagueReducer);
 	const leagueArray = Object.values(leagueObject);
@@ -24,7 +26,8 @@ function LeaguePage() {
 	const handleDeleteLeague = async (e) => {
 		e.preventDefault();
 
-		dispatch(deleteLeagueAction(league_id));
+		dispatch(deleteLeagueAction(league_id))
+		.then(history.push('/leagues'));
 	};
 
 	useEffect(() => {

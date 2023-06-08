@@ -49,11 +49,10 @@ function TeamPage() {
 				}
 			})}
 			{draftsArray?.map((draft) => {
-				console.log(team_id);
 				if (draft.team_id === parseInt(team_id)) {
 					return (
 						<div key={draft.id} className="draft-divider">
-							<span>{draft.team_id} </span>
+							<span>{draft.id}. </span>
 							{playersArray?.map((player) => {
 								if (player.id === draft.player_id) {
 									return (
