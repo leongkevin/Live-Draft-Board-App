@@ -40,6 +40,7 @@ def create_leagues():
         db.session.add(new_league)
         db.session.commit()
 
+        # not working in frontend
         new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team", user_id=current_user.id, league_id=new_league.id)
         db.session.add(new_team)
 

@@ -7,12 +7,13 @@ from datetime import datetime
 draft_routes = Blueprint('drafts', __name__)
 
 
-# @draft_routes.route('', methods=['GET'])
-# @login_required
-# def read_drafts():
-#     # Query for all players in a draft and returns them in a list of user dictionaries
-#     drafts = Draft.query.all()
-#     return {'drafts': [draft.to_dict() for draft in drafts]}
+@draft_routes.route('', methods=['GET'])
+@login_required
+def read_drafts():
+    # Query for all players in a draft and returns them in a list of user dictionaries
+    drafts = Draft.query.all()
+    # print(drafts)
+    return {'drafts': [draft.to_dict() for draft in drafts]}
 
 
 # @draft_routes.route('/<int:id>', methods=['GET'])
@@ -59,4 +60,4 @@ def draft_player(id):
     except ValueError:
         return "Invalid integer value."
 
-    return jsonify({'draft': new_draft_pick.to_dict()}
+    return jsonify({'draft': new_draft_pick.to_dict()})

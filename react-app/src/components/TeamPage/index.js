@@ -15,6 +15,10 @@ function TeamPage() {
 	const playersObject = useSelector((state) => state.playerReducer);
 	const playersArray = Object.values(playersObject);
 
+	const draftsObject = useSelector((state) => state.draftReducer);
+	const draftsArray = Object.values(draftsObject);
+
+	console.log(draftsObject)
 	const { team_id } = useParams();
 
 	// console.log(teamArray)
@@ -23,6 +27,7 @@ function TeamPage() {
 	useEffect(() => {
 		dispatch(getTeam(team_id));
 		dispatch(getPlayers(playersArray));
+		dispatch(getDraft(draftsArray));
 	}, [dispatch]);
 
 	return (
@@ -46,6 +51,7 @@ function TeamPage() {
 			})}
 
 			{playersArray?.map((player) => {
+				if(player.id) {
 				return (
 					<div key={player.id} className="player-divider">
 						<NavLink
@@ -60,7 +66,7 @@ function TeamPage() {
 							/>
 						</NavLink>
 					</div>
-				);
+				);}
 			})}
 		</>
 	);

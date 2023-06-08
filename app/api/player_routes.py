@@ -4,7 +4,7 @@ from app.models import Player, db
 from datetime import datetime
 
 
-player_routes = Blueprint('drafts', __name__)
+player_routes = Blueprint('players', __name__)
 
 
 @player_routes.route('', methods=['GET'])

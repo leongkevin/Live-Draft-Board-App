@@ -15,9 +15,8 @@ const postDraft = (draft) => ({
 
 // // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
 export const getDraft = () => async (dispatch) => {
-	// const response = await fetch(`/api/teams`);
-	// const teams = await response.json();
-	// console.log(teams)
+	const response = await fetch('/api/drafts');
+	console.log(response);
 	try {
 		const response = await fetch('/api/drafts');
 		console.log(response);
