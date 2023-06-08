@@ -18,9 +18,8 @@ function TeamPage() {
 	const draftsObject = useSelector((state) => state.draftReducer);
 	const draftsArray = Object.values(draftsObject);
 
-	console.log(draftsObject)
 	const { team_id } = useParams();
-
+	// console.log(draftsArray)
 	// console.log(teamArray)
 	// console.log(playerObject)
 
@@ -49,24 +48,39 @@ function TeamPage() {
 					);
 				}
 			})}
-
-			{playersArray?.map((player) => {
-				if(player.id) {
-				return (
-					<div key={player.id} className="player-divider">
-						<NavLink
-							to={{ pathname: `https://${player.stats}` }}
-							target="_blank"
-						>
-							<span>{player.full_name} </span>
-							<br />
-							<img
-								src={player.profile_image}
-								className="player-divider"
-							/>
-						</NavLink>
-					</div>
-				);}
+			{draftsArray?.map((draft) => {
+				console.log(team_id);
+				if (draft.team_id === parseInt(team_id)) {
+					return (
+						<div key={draft.id} className="draft-divider">
+							<span>{draft.team_id} </span>
+							{playersArray?.map((player) => {
+								if (player.id === draft.player_id) {
+									return (
+										<div
+											key={player.id}
+											className="player-divider"
+										>
+											<NavLink
+												to={{
+													pathname: `https://${player.stats}`,
+												}}
+												target="_blank"
+											>
+												<span>{player.full_name} </span>
+												<br />
+												<img
+													src={player.profile_image}
+													className="player-divider"
+												/>
+											</NavLink>
+										</div>
+									);
+								}
+							})}
+						</div>
+					);
+				}
 			})}
 		</>
 	);

@@ -15,8 +15,9 @@ const postDraft = (draft) => ({
 
 // // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
 export const getDraft = () => async (dispatch) => {
-	const response = await fetch('/api/drafts');
-	console.log(response);
+	// const response = await fetch('/api/drafts');
+	// const drafts = await response.json();
+	// console.log(drafts);
 	try {
 		const response = await fetch('/api/drafts');
 		console.log(response);
@@ -58,10 +59,12 @@ const draftReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_DRAFT: {
 			const newState = { ...state };
-			action.payload.draft.forEach((el) => {
+			// console.log('draftReducer', action.payload);
+			action.payload.drafts.forEach((el) => {
 				newState[el.id] = el;
-				// console.log('teamReducer', el);
+				console.log('draftReducer', el.id, el);
 			});
+			console.log(newState)
 			return newState;
 		}
 
