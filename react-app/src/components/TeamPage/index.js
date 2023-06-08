@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTeam } from '../../store/team';
 import { getPlayers } from '../../store/player';
+import { getDraft } from '../../store/draft';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import './TeamPage.css';
@@ -14,14 +15,18 @@ function TeamPage() {
 	const playersObject = useSelector((state) => state.playerReducer);
 	const playersArray = Object.values(playersObject);
 
-	const { team_id } = useParams();
+	const draftsObject = useSelector((state) => state.draftReducer);
+	const draftsArray = Object.values(draftsObject);
 
+	const { team_id } = useParams();
+	// console.log(draftsArray)
 	// console.log(teamArray)
 	// console.log(playerObject)
 
 	useEffect(() => {
 		dispatch(getTeam(team_id));
 		dispatch(getPlayers(playersArray));
+		dispatch(getDraft(draftsArray));
 	}, [dispatch]);
 
 	return (
@@ -43,19 +48,38 @@ function TeamPage() {
 					);
 				}
 			})}
-
-			{playersArray?.map((player) => {
-				return (
-					<NavLink
-						to={{ pathname: `https://${player.stats}` }}
-						target="_blank"
-					>
-						<div key={player.id} className="player-divider">
-							<span>{player.full_name} </span>
-							<br />
+			{draftsArray?.map((draft) => {
+				if (draft.team_id === parseInt(team_id)) {
+					return (
+						<div key={draft.id} className="draft-divider">
+							<span>{draft.id}. </span>
+							{playersArray?.map((player) => {
+								if (player.id === draft.player_id) {
+									return (
+										<div
+											key={player.id}
+											className="player-divider"
+										>
+											<NavLink
+												to={{
+													pathname: `https://${player.stats}`,
+												}}
+												target="_blank"
+											>
+												<span>{player.full_name} </span>
+												<br />
+												<img
+													src={player.profile_image}
+													className="player-divider"
+												/>
+											</NavLink>
+										</div>
+									);
+								}
+							})}
 						</div>
-					</NavLink>
-				);
+					);
+				}
 			})}
 		</>
 	);

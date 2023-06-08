@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { getLeagues } from '../../store/league';
+import { getLeagues, deleteLeagueAction } from '../../store/league';
 import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import './LeaguePage.css';
+
+import OpenModalButton from '../OpenModalButton';
+import LeagueUpdateModal from '../LeagueUpdateModal';
 
 function LeaguePage() {
 	const dispatch = useDispatch();
+	const history = useHistory();
+
 	const sessionUser = useSelector((state) => state.session.user);
 	const leagueObject = useSelector((state) => state.leagueReducer);
 	const leagueArray = Object.values(leagueObject);
@@ -17,6 +22,13 @@ function LeaguePage() {
 	// console.log(teamObject)
 
 	const { league_id } = useParams();
+
+	const handleDeleteLeague = async (e) => {
+		e.preventDefault();
+
+		dispatch(deleteLeagueAction(league_id))
+		.then(history.push('/leagues'));
+	};
 
 	useEffect(() => {
 		dispatch(getLeagues(leagueArray));
@@ -33,11 +45,18 @@ function LeaguePage() {
 				) {
 					return (
 						<div key={league.id} className="league-divider">
-							League {league.id}
-							<br />
-							<span>{league.name} </span>
-							<span>(#{league.id}) </span>
-							<br />
+							<OpenModalButton
+								buttonText={league.name}
+								modalComponent={
+									<LeagueUpdateModal league={league} />
+								}
+							/>
+							<button
+								className="league-divider"
+								onClick={handleDeleteLeague}
+							>
+								Delete League
+							</button>
 						</div>
 					);
 				}
@@ -47,21 +66,21 @@ function LeaguePage() {
 				// console.log(`this is line 39: ${team_id}`)
 				if (parseInt(league_id) === team.league_id) {
 					return (
-						<NavLink
-						to={`/teams/${team.id}`}
-						key={team.id}
-						>
-						<div key={team.id} className="team-divider">
-							Team {team.id}
-							<br />
-							<span>{team.name} </span>
-							<span>(#{team.id}) </span>
-							<br />
-						</div>
+						<NavLink to={`/teams/${team.id}`} key={team.id}>
+							<div key={team.id} className="team-divider">
+								Team {team.id}
+								<br />
+								<span>{team.name} </span>
+								<span>(#{team.id}) </span>
+								<br />
+							</div>
 						</NavLink>
 					);
 				}
 			})}
+			{/* <NavLink to={`/leagues/${league_id}/drafts`} key={league_id}>
+				<button>Enter Draft</button>
+			</NavLink> */}
 		</>
 	);
 }

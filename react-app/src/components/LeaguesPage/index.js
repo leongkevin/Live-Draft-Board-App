@@ -34,9 +34,8 @@ function LeaguesPage(id) {
 	return (
 		<>
 			My Leagues:
-			{/* {leagueArray[0].name} */}
 			{leagueArray?.map((league) => {
-				console.log(parseInt(league.id))
+				// console.log(parseInt(league.id))
 				if (parseInt(sessionUser?.id) === league.admin_id) {
 				return (
 					<div key={league.id} className='league-divider'>
@@ -49,6 +48,7 @@ function LeaguesPage(id) {
 							<span>user {league.admin_id} </span><br/>
               <span>{dateConverter(league.created_at)}</span><p/>
 						</NavLink>
+
 					</div>
 				);
 				}

@@ -42,6 +42,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=55), nullable=False),
     sa.Column('admin_id', sa.Integer(), nullable=False),
+    sa.Column('draft_date', sa.DateTime(timezone=True), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')
@@ -70,6 +71,8 @@ def upgrade():
     sa.Column('first_name', sa.String(length=55), nullable=False),
     sa.Column('last_name', sa.String(length=55), nullable=False),
     sa.Column('stats', sa.String(length=255), nullable=False),
+    sa.Column('profile_image', sa.String(length=255), nullable=True),
+    sa.Column('rank', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')

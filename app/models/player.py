@@ -23,8 +23,12 @@ class Player(db.Model):
     first_name = db.Column(db.String(55), nullable=False)
     last_name = db.Column(db.String(55), nullable=False)
     stats = db.Column(db.String(255), nullable=False)
+    profile_image = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+    rank = db.Column(db.Integer, nullable=True)
+
 
     # teams = db.relationship('Team', secondary=teams_players, back_populates='players')
 
@@ -38,6 +42,8 @@ class Player(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'stats': self.stats,
+            'rank': self.rank,
+            'profile_image': self.profile_image,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
