@@ -49,6 +49,7 @@ function LeaguesPage(id) {
 							<span>user {league.admin_id} </span><br/>
               <span>{dateConverter(league.created_at)}</span><p/>
 						</NavLink>
+
 					</div>
 				);
 				}

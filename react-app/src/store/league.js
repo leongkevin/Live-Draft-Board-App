@@ -47,16 +47,18 @@ export const getLeagues = () => async (dispatch) => {
 	}
 };
 
-// export const getLeagueAction = (leagueId) => async (dispatch) => {
-// 	const response = await fetch(`/api/leagues/${leagueId}`);
+// not tested
+export const getLeagueAction = (leagueId) => async (dispatch) => {
+	const response = await fetch(`/api/leagues/${leagueId}`);
 
-// 	if (response.ok) {
-// 		const league = await response.json();
-// 		dispatch(loadLeague(league));
-// 		return league;
-// 	} else return response.json();
-// };
+	if (response.ok) {
+		const league = await response.json();
+		dispatch(loadLeague(league));
+		return league;
+	} else return response.json();
+};
 
+// not tested
 export const createLeagueAction = (data) => async (dispatch) => {
 	try {
 		const response = await fetch(`/api/leagues`, {
@@ -77,8 +79,10 @@ export const createLeagueAction = (data) => async (dispatch) => {
 	}
 };
 
+// not tested
 export const updateLeagueAction = (league) => async (dispatch) => {
-	const response = await fetch(`/api/songs/${league.id}`, {
+	console.log(league)
+	const response = await fetch(`/api/leagues/${league.id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -94,6 +98,7 @@ export const updateLeagueAction = (league) => async (dispatch) => {
 	} else return response.json();
 };
 
+// not tested
 export const deleteLeagueAction = (leagueId) => async (dispatch) => {
 	const response = await fetch(`/api/leagues/${leagueId}`, {
 		method: 'DELETE',

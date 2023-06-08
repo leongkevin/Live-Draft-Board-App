@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import './LeaguePage.css';
 
+import OpenModalButton from '../OpenModalButton';
+import LeagueUpdateModal from '../LeagueUpdateModal';
+
 function LeaguePage() {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
@@ -33,11 +36,12 @@ function LeaguePage() {
 				) {
 					return (
 						<div key={league.id} className="league-divider">
-							League {league.id}
-							<br />
-							<span>{league.name} </span>
-							<span>(#{league.id}) </span>
-							<br />
+							<OpenModalButton
+								buttonText={league.name}
+								modalComponent={
+									<LeagueUpdateModal league={league} />
+								}
+							/>
 						</div>
 					);
 				}

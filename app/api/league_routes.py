@@ -6,9 +6,9 @@ from datetime import datetime
 
 import random
 
-import datetime
-today = datetime.date.today()
-current_year = today.year
+# import datetime
+# today = datetime.date.today()
+# current_year = today.year
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -36,11 +36,11 @@ def create_leagues():
     random_num = random.randint(1, 30)
 
     try:
-        new_league = League(name=F"{current_user.username}'s {league_words[random_num]} League {current_year}", admin_id=current_user.id)
+        new_league = League(name=F"{current_user.username}'s {league_words[random_num]} League", admin_id=current_user.id)
         db.session.add(new_league)
         db.session.commit()
 
-        new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=new_league.id)
+        new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team", user_id=current_user.id, league_id=new_league.id)
         db.session.add(new_team)
 
         data = new_team.query.get('id') # why did this update the dictionary
@@ -75,8 +75,10 @@ def update_league(id):
         return jsonify(error=["You don't have the permission to edit this league."]), 401
 
     name = request.json.get('name')
+    draft_date = request.json.get('draft_date')
 
     league.name = name or league.name
+    league.draft_date = draft_date or league.draft_date
     league.updated_at = datetime.now()
 
     db.session.commit()
@@ -91,7 +93,7 @@ def create_team(id):
     random_num = random.randint(1, 35)
 
     try:
-        new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team {current_year}", user_id=current_user.id, league_id=id)
+        new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team", user_id=current_user.id, league_id=id)
         db.session.add(new_team)
         db.session.commit()
     except ValueError:
