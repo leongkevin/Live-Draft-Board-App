@@ -90,7 +90,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('league_id', 'user_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE league_users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE leagues_users SET SCHEMA {SCHEMA};")
     ### end Alembic commands ###qqqqqqqqq
 
 
