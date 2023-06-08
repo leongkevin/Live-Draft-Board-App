@@ -27,6 +27,9 @@ class Player(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    rank = db.Column(db.Integer, nullable=True)
+
+
     # teams = db.relationship('Team', secondary=teams_players, back_populates='players')
 
     team_association = db.relationship('Draft', back_populates='player')
@@ -39,6 +42,7 @@ class Player(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'stats': self.stats,
+            'rank': self.rank,
             'profile_image': self.profile_image,
             'created_at': self.created_at,
             'updated_at': self.updated_at
