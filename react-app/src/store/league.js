@@ -109,8 +109,8 @@ export const deleteLeagueAction = (leagueId) => async (dispatch) => {
 		const league = await response.json();
 		dispatch(deleteLeague(leagueId));
 		return league;
-	} else return response.json();
-};
+	}
+}
 
 // reducer
 const initialState = {};
