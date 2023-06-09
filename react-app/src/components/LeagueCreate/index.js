@@ -41,7 +41,8 @@ function LeagueCreate() {
 					name: name,
 					// draft_date: draftDate,
 				})
-			).then(history.push('/leagues'));
+			)
+			// .then(history.push('/leagues'));
 		} catch (errors) {
 			alert(errors);
 		}
