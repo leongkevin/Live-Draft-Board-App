@@ -41,10 +41,11 @@ def create_leagues():
         db.session.commit()
 
         # not working in frontend
-        new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team", user_id=current_user.id, league_id=new_league.id)
-        db.session.add(new_team)
+        # comment out for prod
+        # new_team = Team(name=F"Commissioner {current_user.username}'s {team_words[random_num]} Team", user_id=current_user.id, league_id=new_league.id)
+        # db.session.add(new_team)
 
-        data = new_team.query.get('id') # why did this update the dictionary
+        # data = new_team.query.get('id') # why did this update the dictionary
     except ValueError:
         return "Invalid integer value."
 
