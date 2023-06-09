@@ -101,7 +101,7 @@ export const updateLeagueAction = (league) => async (dispatch) => {
 
 // not tested
 export const deleteLeagueAction = (leagueId) => async (dispatch) => {
-	const response = await fetch(`/api/leagues/${leagueId}`, {
+	const response = await fetch(`/api/leagues/${leagueId}/`, {
 		method: 'DELETE',
 	});
 
