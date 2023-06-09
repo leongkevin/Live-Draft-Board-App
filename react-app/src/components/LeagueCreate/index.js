@@ -38,11 +38,11 @@ function LeagueCreate() {
 		try {
 			const league = await dispatch(
 				createLeagueAction({
-					name: name,
+					// name: name,
 					// draft_date: draftDate,
 				})
 			)
-			// .then(history.push('/leagues'));
+			history.push('/leagues');
 		} catch (errors) {
 			alert(errors);
 		}
