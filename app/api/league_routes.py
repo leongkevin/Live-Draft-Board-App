@@ -65,7 +65,7 @@ def delete_league(league_id):
     db.session.delete(league)
     db.session.commit()
 
-    return {"league": league.to_dict()}
+    return jsonify({"league": league.to_dict()})
 
 @league_routes.route('/<int:id>', methods=['PUT'])
 @login_required

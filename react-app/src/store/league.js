@@ -107,7 +107,7 @@ export const deleteLeagueAction = (leagueId) => async (dispatch) => {
 
 	if (response.ok) {
 		const league = await response.json();
-		dispatch(deleteLeague(league));
+		dispatch(deleteLeague(leagueId));
 		return league;
 	} else return response.json();
 };
