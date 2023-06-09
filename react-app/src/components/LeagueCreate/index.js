@@ -39,7 +39,7 @@ function LeagueCreate() {
 			const league = await dispatch(
 				createLeagueAction({
 					name: name,
-					draft_date: draftDate,
+					// draft_date: draftDate,
 				})
 			).then(history.push('/leagues'));
 		} catch (errors) {
