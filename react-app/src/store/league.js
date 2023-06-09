@@ -101,13 +101,13 @@ export const updateLeagueAction = (league) => async (dispatch) => {
 
 // not tested
 export const deleteLeagueAction = (leagueId) => async (dispatch) => {
-	const response = await fetch(`/api/leagues/${leagueId}/`, {
+	const response = await fetch(`/api/leagues/${leagueId}`, {
 		method: 'DELETE',
 	});
 
 	if (response.ok) {
 		const league = await response.json();
-		dispatch(deleteLeague(leagueId));
+		dispatch(deleteLeague(league));
 		return league;
 	} else return response.json();
 };
