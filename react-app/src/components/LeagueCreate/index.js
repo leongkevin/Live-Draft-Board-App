@@ -35,16 +35,16 @@ function LeagueCreate() {
 		// 	}
 		// };
 
-		try {
+		// try {
 			const league = await dispatch(
 				createLeagueAction({
 					// draft_date: draftDate,
 				})
 			)
 			history.push('/leagues');
-		} catch (errors) {
-			alert(errors);
-		}
+		// } catch (errors) {
+		// 	alert(errors);
+		// }
 	};
 	return (
 		<>
