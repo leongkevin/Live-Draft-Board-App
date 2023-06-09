@@ -60,13 +60,14 @@ export const getLeagueAction = (leagueId) => async (dispatch) => {
 
 // not tested
 export const createLeagueAction = (data) => async (dispatch) => {
+	console.log(data)
 	try {
 		const response = await fetch(`/api/leagues`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(data),
+			// body: JSON.stringify(data),
 		});
 
 		if (response.ok) {
