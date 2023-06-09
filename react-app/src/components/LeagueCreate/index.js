@@ -38,7 +38,6 @@ function LeagueCreate() {
 		try {
 			const league = await dispatch(
 				createLeagueAction({
-					// name: name,
 					// draft_date: draftDate,
 				})
 			)
