@@ -50,8 +50,8 @@ def create_leagues():
     except ValueError:
         return "Invalid integer value."
 
-    return jsonify({'league': new_league.to_dict()}), 201
-# , {'team': new_team.to_dict()}
+    return jsonify({'league': new_league.to_dict(), 'team': new_team.to_dict()}), 201
+
 
 @league_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
