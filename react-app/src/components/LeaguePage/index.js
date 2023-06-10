@@ -23,6 +23,11 @@ function LeaguePage() {
 
 	const { league_id } = useParams();
 
+	useEffect(() => {
+		dispatch(getLeagues(leagueArray));
+		dispatch(getTeams(teamArray));
+	}, [dispatch]);
+
 	const handleDeleteLeague = async (e) => {
 		e.preventDefault();
 
@@ -30,10 +35,6 @@ function LeaguePage() {
 		// .then(history.push('/leagues'));
 	};
 
-	useEffect(() => {
-		dispatch(getLeagues(leagueArray));
-		dispatch(getTeams(teamArray));
-	}, [dispatch]);
 
 	return (
 		<>
