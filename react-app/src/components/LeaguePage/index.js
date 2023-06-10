@@ -26,7 +26,7 @@ function LeaguePage() {
 	const handleDeleteLeague = async (e) => {
 		e.preventDefault();
 
-		dispatch(deleteLeagueAction(league_id))
+		dispatch(deleteLeagueAction(8))
 		// .then(history.push('/leagues'));
 	};
 
