@@ -3,13 +3,11 @@ import { getLeagues } from '../../store/league';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './HomePage.css';
-import { useModal } from '../../context/Modal';
-import OpenModalButton from '../OpenModalButton';
 import LeagueCreate from '../LeagueCreate';
 
 function HomePage() {
 	const dispatch = useDispatch();
-	const closeModal = useModal();
+
 	const sessionUser = useSelector((state) => state.session.user);
 	const leagueObject = useSelector((state) => state.leagueReducer);
 	const leagueArray = Object.values(leagueObject);
@@ -49,8 +47,8 @@ function HomePage() {
 
 	return (
 		<>
-			{/* Leagues */}
-			{/* {leagueArray?.map((league) => {
+			Explore or Join a League
+			{leagueArray?.map((league) => {
 				// if (parseInt(id) === league.id) {
 				return (
 					<div key={league.id} className="league-divider">
@@ -66,11 +64,8 @@ function HomePage() {
 					</div>
 				);
 				// }
-			})} */}
-			{/* <OpenModalButton
-				buttonText="Create League"
-				modalComponent={<LeagueCreateModal />}
-			/> */}
+			})}
+
 			<LeagueCreate />
 		</>
 	);
