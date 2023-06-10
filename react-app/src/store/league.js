@@ -52,10 +52,10 @@ export const getLeagueAction = (leagueId) => async (dispatch) => {
 	const response = await fetch(`/api/leagues/${leagueId}`);
 
 	if (response.ok) {
-		const league = await response.json();
+		const data = await response.json();
 		dispatch(loadLeague(league));
-		return league;
-	} else return response.json();
+		return data;
+	}
 };
 
 // not tested
@@ -71,10 +71,10 @@ export const createLeagueAction = (data) => async (dispatch) => {
 		});
 
 		if (response.ok) {
-			const league = await response.json();
+			const data = await response.json();
 			dispatch(postLeague(league));
-			return league;
-		} else return response.json();
+			return data;
+		}
 	} catch (err) {
 		throw err;
 	}
@@ -104,11 +104,12 @@ export const deleteLeagueAction = (leagueId) => async (dispatch) => {
 	const response = await fetch(`/api/leagues/${leagueId}`, {
 		method: 'DELETE',
 	});
+	console.log(response)
 
 	if (response.ok) {
-		const league = await response.json();
+		const data = await response.json();
 		dispatch(deleteLeague(leagueId));
-		return league;
+		return data;
 	}
 }
 

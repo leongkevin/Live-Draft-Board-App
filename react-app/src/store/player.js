@@ -18,11 +18,11 @@ export const getPlayers = () => async (dispatch) => {
 		const response = await fetch('/api/players');
 		console.log(response)
 		if (response.ok) {
-			const players = await response.json();
+			const data = await response.json();
 			// console.log('getPlayers.line 17', players);
 			dispatch(loadPlayers(players));
 			// console.log('getPlayers.line 18', players);
-			return players;
+			return data;
 		}
 	} catch (err) {
 		return err;

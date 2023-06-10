@@ -22,11 +22,11 @@ export const getTeams = () => async (dispatch) => {
 		const response = await fetch('/api/teams');
 		console.log(response)
 		if (response.ok) {
-			const teams = await response.json();
+			const data = await response.json();
 			// console.log('getTeams.line 17', teams);
 			dispatch(loadTeams(teams));
 			// console.log('getLeagues.line 18', leagues);
-			return teams;
+			return data;
 		}
 	} catch (err) {
 		return err;
