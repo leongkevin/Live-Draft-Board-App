@@ -101,16 +101,16 @@ export const updateLeagueAction = (league) => async (dispatch) => {
 
 // not tested
 export const deleteLeagueAction = (leagueId) => async (dispatch) => {
-	const response = await fetch(`/api/leagues/${leagueId}`, {
-		method: 'DELETE',
-	});
-	console.log(response)
+	// const response = await fetch(`/api/leagues/${leagueId}`, {
+	// 	method: 'DELETE',
+	// });
+	// console.log(response)
 
-	if (response.ok) {
-		const data = await response.json();
+	// if (response.ok) {
+	// 	const data = await response.json();
 		dispatch(deleteLeague(leagueId));
-		return data;
-	}
+	// 	return data;
+	// }
 }
 
 // reducer
