@@ -20,7 +20,7 @@ export const getPlayers = () => async (dispatch) => {
 		if (response.ok) {
 			const data = await response.json();
 			// console.log('getPlayers.line 17', players);
-			dispatch(loadPlayers(players));
+			dispatch(loadPlayers(data));
 			// console.log('getPlayers.line 18', players);
 			return data;
 		}

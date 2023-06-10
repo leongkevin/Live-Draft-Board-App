@@ -25,9 +25,9 @@ function LeaguePage() {
 
 	const handleDeleteLeague = async (e) => {
 		e.preventDefault();
-		
+
 		dispatch(deleteLeagueAction(league_id))
-		.then(history.push('/leagues'));
+		// .then(history.push('/leagues'));
 	};
 
 	useEffect(() => {

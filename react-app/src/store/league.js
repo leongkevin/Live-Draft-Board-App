@@ -53,7 +53,7 @@ export const getLeagueAction = (leagueId) => async (dispatch) => {
 
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(loadLeague(league));
+		dispatch(loadLeague(leagueId));
 		return data;
 	}
 };
@@ -72,7 +72,7 @@ export const createLeagueAction = (data) => async (dispatch) => {
 
 		if (response.ok) {
 			const data = await response.json();
-			dispatch(postLeague(league));
+			dispatch(postLeague(data));
 			return data;
 		}
 	} catch (err) {
