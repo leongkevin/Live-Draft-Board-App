@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getTeam, deleteTeamAction, updateTeamAction } from '../../store/team';
 import { getPlayers } from '../../store/player';
 import { getDraft } from '../../store/draft';
@@ -43,11 +43,52 @@ function TeamPage() {
 		// .then(history.push('/leagues'));
 	};
 
+	// filter list
+	// const draft = draftsArray?.filter((draft) => {
+	// 	// return draft.team_id === parseInt(team_id)
+	// 	return draft.team_id === parseInt(team_id)
+	// });
+
+	let isDrafted;
+
+	draftsArray?.map((draft) => {
+		// return draft.team_id === parseInt(team_id)
+		if (draft.team_id === parseInt(team_id)) {
+			return true;
+		}
+	});
+
+	console.log(isDrafted);
+
 	return (
 		<>
 			{teamArray?.map((team) => {
 				// console.log(`this is line 39: ${team_id}`)
+				console.log(isDrafted)
 				if (
+					parseInt(sessionUser?.id) === team.user_id &&
+					parseInt(team_id) === team.id &&
+					isDrafted
+				) {
+					return (
+						<>
+							<div key={team.id} className="team-divider">
+								Team {team.id}
+								<br />
+								<span>{team.name} </span>
+								<span>(#{team.id}) </span>
+								<br />
+							</div>
+
+							<button
+								className="team-divider"
+								onClick={handleUpdateTeam}
+							>
+								Update Team
+							</button>
+						</>
+					);
+				} else if (
 					parseInt(sessionUser?.id) === team.user_id &&
 					parseInt(team_id) === team.id
 				) {

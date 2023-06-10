@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { updateLeagueAction } from '../../store/league';
+import { updateTeamAction } from '../../store/team';
 import { useModal } from '../../context/Modal';
 
 
-function LeagueUpdateModal(props) {
+function TeamUpdateModal(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const closeModal = useModal();
 
 	const [name, setName] = useState('');
-	const [adminId, setAdminId] = useState(0);
-	const [draftDate, setDraftDate] = useState(new Date());
+	const [userId, setUserId] = useState(0);
+	const [leagueId, setLeagueId] = useState(0);
 	const [errors, setErrors] = useState([]);
 
 	const sessionUser = useSelector((state) => state.session?.user);
 
-	const handleUpdateLeague = async (e) => {
+	const handleUpdateTeam = async (e) => {
 		e.preventDefault();
 		setErrors([]);
 
@@ -57,7 +57,7 @@ function LeagueUpdateModal(props) {
 			<div className="league">
 				<h2>Update League Name</h2>
 
-				<form className="league-form" onSubmit={handleUpdateLeague}>
+				<form className="league-form" onSubmit={handleCreateLeague}>
 
 						{errors.length ? <h3>Errors</h3> : ''}
 						<div className="errors">
@@ -97,4 +97,4 @@ function LeagueUpdateModal(props) {
 		</>
 	);
 }
-export default LeagueUpdateModal;
+export default TeamUpdateModal;

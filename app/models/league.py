@@ -6,6 +6,10 @@ leagues_users = db.Table('leagues_users',
     db.Column('league_id', db.Integer, db.ForeignKey(add_prefix_for_prod('leagues.id')), primary_key=True),
     db.Column('user_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
 )
+# add to the bottom of the model file after the end of the db.Table function
+if environment == "production":
+    __table_args__ = {'schema': SCHEMA}
+
 
 class League(db.Model):
     __tablename__ = 'leagues'

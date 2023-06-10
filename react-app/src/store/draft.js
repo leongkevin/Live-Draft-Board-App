@@ -62,7 +62,7 @@ const draftReducer = (state = initialState, action) => {
 			// console.log('draftReducer', action.payload);
 			action.payload.drafts.forEach((el) => {
 				newState[el.id] = el;
-				console.log('draftReducer', el.id, el);
+				// console.log('draftReducer', el.id, el);
 			});
 			console.log(newState)
 			return newState;
