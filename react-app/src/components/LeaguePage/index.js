@@ -8,6 +8,7 @@ import './LeaguePage.css';
 import OpenModalButton from '../OpenModalButton';
 import LeagueUpdateModal from '../LeagueUpdateModal';
 
+
 function LeaguePage() {
 	const dispatch = useDispatch();
 	const history = useHistory();

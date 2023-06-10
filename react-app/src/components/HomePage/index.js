@@ -5,6 +5,9 @@ import { NavLink } from 'react-router-dom';
 import './HomePage.css';
 import LeagueCreate from '../LeagueCreate';
 
+import OpenModalButton from '../OpenModalButton';
+import TeamCreateModal from '../TeamCreateModal';
+
 function HomePage() {
 	const dispatch = useDispatch();
 
@@ -36,7 +39,6 @@ function HomePage() {
 			'December',
 		];
 		let month = date.getMonth();
-		console.log(month);
 		let day = date.getDate();
 		let year = date.getFullYear();
 		let monthByName = months[month];
@@ -61,11 +63,14 @@ function HomePage() {
 							<span>{dateConverter(league.created_at)}</span>
 							<p />
 						</NavLink>
+						<OpenModalButton
+							buttonText="Join"
+							modalComponent={<TeamCreateModal league={league} />}
+						/>
 					</div>
 				);
 				// }
 			})}
-
 			<LeagueCreate />
 		</>
 	);

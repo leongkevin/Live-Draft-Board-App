@@ -67,10 +67,15 @@ export const getTeam = (team_id) => async (dispatch) => {
 };
 
 // not tested
-export const createTeamAction = (leagueId, data) => async (dispatch) => {
-	console.log(data)
+export const createTeamAction = (league) => async (dispatch) => {
+
+	console.log(league)
+	console.log(league.league_id)
+
+	const id = parseInt(league.league_id)
+
 	try {
-		const response = await fetch(`/api/leagues/${leagueId}/teams`, {
+		const response = await fetch(`/api/leagues/${id}/teams`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -80,7 +85,7 @@ export const createTeamAction = (leagueId, data) => async (dispatch) => {
 
 		if (response.ok) {
 			const data = await response.json();
-			dispatch(postTeam(data));
+			dispatch(postTeam(id));
 			return data;
 		}
 	} catch (err) {
