@@ -9,7 +9,7 @@ import { useModal } from '../../context/Modal';
 function LeagueUpdateModal(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const closeModal = useModal();
+	const {closeModal} = useModal();
 
 	const [name, setName] = useState('');
 	const [adminId, setAdminId] = useState(0);
@@ -46,7 +46,7 @@ function LeagueUpdateModal(props) {
 			})
 
 		)
-		.then(history.push("/leagues"))
+		closeModal()
 	} catch (errors) {
 		alert(errors);
 	}

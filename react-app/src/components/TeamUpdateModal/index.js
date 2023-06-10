@@ -8,7 +8,7 @@ import { useModal } from '../../context/Modal';
 function TeamUpdateModal(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const closeModal = useModal();
+	const { closeModal } = useModal();
 
 	const [name, setName] = useState('');
 	const [userId, setUserId] = useState(0);
@@ -26,9 +26,9 @@ function TeamUpdateModal(props) {
 				updateTeamAction({
 					id: props.team.id,
 					name: name,
-					// draft_date: draftDate,
 				})
-			).then(closeModal);
+			);
+			closeModal();
 		} catch (errors) {
 			alert(errors);
 		}
