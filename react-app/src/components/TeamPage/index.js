@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import { getTeam, deleteTeamAction, updateTeamAction } from '../../store/team';
 import { getPlayers } from '../../store/player';
 import { getDraft } from '../../store/draft';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import './TeamPage.css';
+
+import OpenModalButton from '../OpenModalButton';
+import TeamUpdateModal from '../TeamUpdateModal';
 
 function TeamPage() {
 	const dispatch = useDispatch();
@@ -18,6 +22,7 @@ function TeamPage() {
 	const draftsObject = useSelector((state) => state.draftReducer);
 	const draftsArray = Object.values(draftsObject);
 
+	const history = useHistory()
 	const { team_id } = useParams();
 	// console.log(draftsArray)
 	// console.log(teamArray)
@@ -32,8 +37,8 @@ function TeamPage() {
 	const handleDeleteTeam = async (e) => {
 		e.preventDefault();
 
-		dispatch(deleteTeamAction(team_id));
-		// .then(history.push('/leagues'));
+		dispatch(deleteTeamAction(team_id))
+		.then(history.push('/leagues'));
 	};
 
 	const handleUpdateTeam = async (e) => {
@@ -49,22 +54,18 @@ function TeamPage() {
 	// 	return draft.team_id === parseInt(team_id)
 	// });
 
-	let isDrafted;
-
-	draftsArray?.map((draft) => {
-		// return draft.team_id === parseInt(team_id)
-		if (draft.team_id === parseInt(team_id)) {
-			return true;
-		}
-	});
-
-	console.log(isDrafted);
+	let isDrafted = false;
 
 	return (
 		<>
+			{draftsArray?.map((draft) => {
+				if (draft.team_id === parseInt(team_id)) {
+					isDrafted = true;
+					console.log(draft.team_id === parseInt(team_id))
+				}
+			})}
 			{teamArray?.map((team) => {
-				// console.log(`this is line 39: ${team_id}`)
-				console.log(isDrafted)
+					console.log(isDrafted)
 				if (
 					parseInt(sessionUser?.id) === team.user_id &&
 					parseInt(team_id) === team.id &&
@@ -80,17 +81,27 @@ function TeamPage() {
 								<br />
 							</div>
 
-							<button
+							<div key={team.id} className="team-divider">
+							<OpenModalButton
+								buttonText={team.name}
+								modalComponent={
+									<TeamUpdateModal team={team} />
+								}
+							/>
+							</div>
+
+							{/* <button
 								className="team-divider"
 								onClick={handleUpdateTeam}
 							>
 								Update Team
-							</button>
+							</button> */}
 						</>
 					);
 				} else if (
 					parseInt(sessionUser?.id) === team.user_id &&
-					parseInt(team_id) === team.id
+					parseInt(team_id) === team.id &&
+					isDrafted === false
 				) {
 					return (
 						<>
@@ -101,7 +112,7 @@ function TeamPage() {
 								<span>(#{team.id}) </span>
 								<br />
 							</div>
-
+							<div>Season has yet to begin</div>
 							<button
 								className="team-divider"
 								onClick={handleDeleteTeam}

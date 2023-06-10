@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { updateTeamAction } from '../../store/team';
 import { useModal } from '../../context/Modal';
 
-
 function TeamUpdateModal(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -22,71 +21,42 @@ function TeamUpdateModal(props) {
 		e.preventDefault();
 		setErrors([]);
 
-	// 	try {
-	// 		const league = await dispatch(
-	// 			createLeagueAction({
-	// 				name,
-	// 				admin_id: sessionUser.id,
-	// 				draft_date: draftDate,
-	// 			})
-	// 		);
-	// 		// await history.push(`/leagues/${league.id}`);
-	// 		.then(closeModal)
-	// 	} catch (errors) {
-	// 		alert(errors);
-	// 	}
-	// };
-		// console.log(props.league.id)
-	try {
-		const league = await dispatch(
-			updateLeagueAction({
-				id: props.league.id,
-				name: name,
-				// draft_date: draftDate,
-			})
-
-		)
-		// .then(console.log(draftDate))
-		// .then(history.push("/leagues"))
-	} catch (errors) {
-		alert(errors);
-	}
-};
+		try {
+			const team = await dispatch(
+				updateTeamAction({
+					id: props.team.id,
+					name: name,
+					// draft_date: draftDate,
+				})
+			).then(closeModal);
+		} catch (errors) {
+			alert(errors);
+		}
+	};
 	return (
 		<>
-			<div className="league">
-				<h2>Update League Name</h2>
+			<div className="team">
+				<h2>Update Team Name</h2>
 
-				<form className="league-form" onSubmit={handleCreateLeague}>
+				<form className="team-form" onSubmit={handleUpdateTeam}>
+					{errors.length ? <h3>Errors</h3> : ''}
+					<div className="errors">
+						{errors.map((error, idx) => (
+							<li key={idx}>{errors}</li>
+						))}
+					</div>
 
-						{errors.length ? <h3>Errors</h3> : ''}
-						<div className="errors">
-							{errors.map((error, idx) => (
-								<li key={idx}>{errors}</li>
-							))}
-						</div>
-
-
-					<label className="league-form">Name: </label>
+					<label className="team-form">Name: </label>
 					<input
-						className="league-form-input"
+						className="team-form-input"
 						type="text"
 						placeholder="Name"
 						onChange={(e) => setName(e.target.value)}
 						required
 					/>
 
-					{/* <label className="song-modal-label">Draft Date</label>
-					<input
-						className="league-form-input"
-						type="date"
-						placeholder="Draft Date"
-						onChange={(e) => setDraftDate(e.target.value)}
-						required
-					/> */}
-
 					<button
-						className="league-form-button"
+						className="team-form-button"
 						type="submit"
 						disabled={errors.length ? true : false}
 					>

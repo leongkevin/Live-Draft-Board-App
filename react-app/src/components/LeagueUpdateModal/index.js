@@ -46,8 +46,7 @@ function LeagueUpdateModal(props) {
 			})
 
 		)
-		// .then(console.log(draftDate))
-		// .then(history.push("/leagues"))
+		.then(history.push("/leagues"))
 	} catch (errors) {
 		alert(errors);
 	}
