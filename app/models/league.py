@@ -8,7 +8,7 @@ leagues_users = db.Table('leagues_users',
 )
 # add to the bottom of the model file after the end of the db.Table function
 if environment == "production":
-    __table_args__ = {'schema': SCHEMA}
+    leagues_users.schema = SCHEMA
 
 
 class League(db.Model):
