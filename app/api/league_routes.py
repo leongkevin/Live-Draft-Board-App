@@ -54,11 +54,11 @@ def create_leagues():
     # return jsonify({'league': new_league.to_dict(), 'team': new_team.to_dict()}), 201
 
 
-@league_routes.route('/<int:id>', methods=['DELETE'])
+@league_routes.route('/<int:leagueId>', methods=['DELETE'])
 @login_required
-def delete_league(id):
+def delete_league(leagueId):
     # Deletes an existing league with the given id if the user is the league's admin
-    league = League.query.get(id)
+    league = League.query.get(leagueId)
 
     if league.admin_id != current_user.id:
         return jsonify(error=["You don't have the permission to delete this league."]), 401
