@@ -33,7 +33,7 @@ function LeaguesPage(id) {
 
 	return (
 		<>
-			My Leagues:
+			Comissioner Leagues:
 			{leagueArray?.map((league) => {
 				// console.log(parseInt(league.id))
 				if (parseInt(sessionUser?.id) === league.admin_id) {

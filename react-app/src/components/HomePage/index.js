@@ -6,7 +6,8 @@ import './HomePage.css';
 import LeagueCreate from '../LeagueCreate';
 
 import OpenModalButton from '../OpenModalButton';
-import TeamCreateModal from '../TeamCreateModal';
+import TeamCreateModal from '../TeamCreate';
+import TeamCreate from '../TeamCreate';
 
 function HomePage() {
 	const dispatch = useDispatch();
@@ -14,7 +15,6 @@ function HomePage() {
 	const sessionUser = useSelector((state) => state.session.user);
 	const leagueObject = useSelector((state) => state.leagueReducer);
 	const leagueArray = Object.values(leagueObject);
-	// console.log(`HomePage, leagueArray: ${leagueArray}`);
 
 	const teamObject = useSelector((state) => state.teamReducer);
 	const teamArray = Object.values(teamObject);
@@ -69,10 +69,43 @@ function HomePage() {
 
 
 
+
+
+						{/* {teamArray?.map((team) => {
+
+				return (
+					<div key={team.id} className="team-divider">
+
+							<span>{league.name} </span>
 						<OpenModalButton
 							buttonText="Join"
 							modalComponent={<TeamCreateModal league={league} />}
 						/>
+					</div>
+				);
+
+			})} */}
+
+{/* <OpenModalButton
+							buttonText="Join"
+							modalComponent={<TeamCreateModal league={league} />}
+						/> */}
+
+
+
+
+
+						<TeamCreate league={league}/>
+
+
+
+
+
+
+
+
+
+
 					</div>
 				);
 				// }

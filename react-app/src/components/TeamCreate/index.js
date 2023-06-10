@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { createTeamAction } from '../../store/team';
 import { useModal } from '../../context/Modal';
 
-function TeamCreateModal(props) {
+function TeamCreate(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { closeModal } = useModal();
@@ -43,25 +43,16 @@ function TeamCreateModal(props) {
 						))}
 					</div>
 
-					<label className="team-form">Name: </label>
-					<input
-						className="team-form-input"
-						type="text"
-						placeholder="Name"
-						onChange={(e) => setName(e.target.value)}
-						required
-					/>
-
 					<button
 						className="team-form-button"
 						type="submit"
 						disabled={errors.length ? true : false}
 					>
-						<h2>Create Team</h2>
+						<h2>Join League</h2>
 					</button>
 				</form>
 			</div>
 		</>
 	);
 }
-export default TeamCreateModal;
+export default TeamCreate;
