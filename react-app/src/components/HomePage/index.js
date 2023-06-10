@@ -16,6 +16,9 @@ function HomePage() {
 	const leagueArray = Object.values(leagueObject);
 	// console.log(`HomePage, leagueArray: ${leagueArray}`);
 
+	const teamObject = useSelector((state) => state.teamReducer);
+	const teamArray = Object.values(teamObject);
+
 	useEffect(() => {
 		dispatch(getLeagues(leagueArray));
 	}, [dispatch]);
@@ -63,6 +66,9 @@ function HomePage() {
 							<span>{dateConverter(league.created_at)}</span>
 							<p />
 						</NavLink>
+
+
+
 						<OpenModalButton
 							buttonText="Join"
 							modalComponent={<TeamCreateModal league={league} />}

@@ -41,19 +41,6 @@ function TeamPage() {
 		.then(history.push('/leagues'));
 	};
 
-	const handleUpdateTeam = async (e) => {
-		e.preventDefault();
-
-		dispatch(updateTeamAction(team_id));
-		// .then(history.push('/leagues'));
-	};
-
-	// filter list
-	// const draft = draftsArray?.filter((draft) => {
-	// 	// return draft.team_id === parseInt(team_id)
-	// 	return draft.team_id === parseInt(team_id)
-	// });
-
 	let isDrafted = false;
 
 	return (
@@ -83,19 +70,12 @@ function TeamPage() {
 
 							<div key={team.id} className="team-divider">
 							<OpenModalButton
-								buttonText={team.name}
+								buttonText="Update"
 								modalComponent={
 									<TeamUpdateModal team={team} />
 								}
 							/>
 							</div>
-
-							{/* <button
-								className="team-divider"
-								onClick={handleUpdateTeam}
-							>
-								Update Team
-							</button> */}
 						</>
 					);
 				} else if (
@@ -119,12 +99,14 @@ function TeamPage() {
 							>
 								Delete Team
 							</button>
-							<button
-								className="team-divider"
-								onClick={handleUpdateTeam}
-							>
-								Update Team
-							</button>
+							<div key={team.id} className="team-divider">
+							<OpenModalButton
+								buttonText="Update"
+								modalComponent={
+									<TeamUpdateModal team={team} />
+								}
+							/>
+							</div>
 						</>
 					);
 				}

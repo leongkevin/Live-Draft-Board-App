@@ -96,6 +96,14 @@ def update_league(id):
 @league_routes.route('/<int:id>/teams', methods=['POST'])
 @login_required
 def create_team(id):
+
+
+    # team = Team.query.get(user_id)
+    # print(team)
+    # # print(current_user.id)
+    # # if league.admin_id != current_user.id:
+    # #     return jsonify(error=["You don't have the permission to edit this league."]), 401
+
     # Create a new team in the current league
     random_num = random.randint(1, 35)
 

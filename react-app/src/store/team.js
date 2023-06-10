@@ -69,9 +69,8 @@ export const getTeam = (team_id) => async (dispatch) => {
 // not tested
 export const createTeamAction = (league) => async (dispatch) => {
 
-	console.log(league)
-	console.log(league.league_id)
-
+	// console.log(league)
+	// console.log(league.league_id)
 	const id = parseInt(league.league_id)
 
 	try {
