@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTeam } from '../../store/team';
+import { getTeam, deleteTeamAction, updateTeamAction } from '../../store/team';
 import { getPlayers } from '../../store/player';
 import { getDraft } from '../../store/draft';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,6 +29,20 @@ function TeamPage() {
 		dispatch(getDraft(draftsArray));
 	}, [dispatch]);
 
+	const handleDeleteTeam = async (e) => {
+		e.preventDefault();
+
+		dispatch(deleteTeamAction(team_id));
+		// .then(history.push('/leagues'));
+	};
+
+	const handleUpdateTeam = async (e) => {
+		e.preventDefault();
+
+		dispatch(updateTeamAction(team_id));
+		// .then(history.push('/leagues'));
+	};
+
 	return (
 		<>
 			{teamArray?.map((team) => {
@@ -38,13 +52,28 @@ function TeamPage() {
 					parseInt(team_id) === team.id
 				) {
 					return (
-						<div key={team.id} className="team-divider">
-							Team {team.id}
-							<br />
-							<span>{team.name} </span>
-							<span>(#{team.id}) </span>
-							<br />
-						</div>
+						<>
+							<div key={team.id} className="team-divider">
+								Team {team.id}
+								<br />
+								<span>{team.name} </span>
+								<span>(#{team.id}) </span>
+								<br />
+							</div>
+
+							<button
+								className="team-divider"
+								onClick={handleDeleteTeam}
+							>
+								Delete Team
+							</button>
+							<button
+								className="team-divider"
+								onClick={handleUpdateTeam}
+							>
+								Update Team
+							</button>
+						</>
 					);
 				}
 			})}
