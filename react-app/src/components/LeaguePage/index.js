@@ -8,7 +8,6 @@ import './LeaguePage.css';
 import OpenModalButton from '../OpenModalButton';
 import LeagueUpdateModal from '../LeagueUpdateModal';
 
-
 function LeaguePage() {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -30,12 +29,9 @@ function LeaguePage() {
 	}, [dispatch]);
 
 	const handleDeleteLeague = async (e) => {
-		e.preventDefault();
-
-		dispatch(deleteLeagueAction(league_id))
-		.then(history.push('/leagues'));
+		// e.preventDefault(); //not required with confirm button
+		dispatch(deleteLeagueAction(league_id)).then(history.push('/leagues'));
 	};
-
 
 	return (
 		<>
@@ -47,18 +43,40 @@ function LeaguePage() {
 				) {
 					return (
 						<div key={league.id} className="league-divider">
+							{league.name}
+							<p />
+							Commissioner tools:
 							<OpenModalButton
-								buttonText={league.name}
+								buttonText="Edit Name"
 								modalComponent={
 									<LeagueUpdateModal league={league} />
 								}
 							/>
-							<button
+							{/* <button
 								className="league-divider"
-								onClick={handleDeleteLeague}
+								onClick={() => {
+									if (
+										window.confirm(
+											'Are you sure you wish to delete this item?'
+										)
+									)
+										this.onCancel(handleDeleteLeague);
+								}}
+								// />
 							>
 								Delete League
-							</button>
+							</button> */}
+							<button
+								className="delete button"
+								onClick={() => {
+									const confirmBox = window.confirm(
+										'Are you sure you wish to delete this league?'
+									);
+									if (confirmBox === true) {
+										handleDeleteLeague()
+									}
+								}}
+							>Delete League</button>
 						</div>
 					);
 				}

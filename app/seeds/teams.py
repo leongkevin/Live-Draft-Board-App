@@ -10,12 +10,12 @@ def seed_teams():
         Team(name="Crystal's Enigmatic Team", user_id=4, league_id=1),
         Team(name="Bill's Phenomenal Team", user_id=5, league_id=1),
         Team(name="Ethan's Explosive Team", user_id=6, league_id=1),
-        Team(name="Robert's Enigmatic Team", user_id=6, league_id=1),
-        Team(name="Gabriel's Creative Team", user_id=7, league_id=1),
-        Team(name="Chris Unbelievable Team", user_id=8, league_id=1),
-        Team(name="Jesse's Unyielding Team", user_id=9, league_id=1),
-        Team(name="Philip's Flawless Team", user_id=10, league_id=1),
-        Team(name="Kristen's Dauntless Team", user_id=11, league_id=1),
+        Team(name="Robert's Enigmatic Team", user_id=7, league_id=1),
+        Team(name="Gabriel's Creative Team", user_id=8, league_id=1),
+        Team(name="Chris Unbelievable Team", user_id=9, league_id=1),
+        Team(name="Jesse's Unyielding Team", user_id=10, league_id=1),
+        Team(name="Philip's Flawless Team", user_id=11, league_id=1),
+        Team(name="Kristen's Dauntless Team", user_id=12, league_id=1),
         Team(name="Demo's Dauntless Team", user_id=1, league_id=2),
     ]
 

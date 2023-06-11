@@ -14,11 +14,19 @@ function TeamCreate(props) {
 
 	const sessionUser = useSelector((state) => state.session?.user);
 
-	console.log(props)
+
+	const teamObject = useSelector((state) => state.teamReducer);
+	const teamArray = Object.values(teamObject);
+
+	console.log(teamObject)
+	// console.log(props)
 
 	const handleCreateTeam = async (e) => {
 		e.preventDefault();
 		setErrors([]);
+		// if(1){
+		// 	alert("Nah")
+		// }
 
 		try {
 			const team = await dispatch(

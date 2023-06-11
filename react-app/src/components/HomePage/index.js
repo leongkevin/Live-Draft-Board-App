@@ -52,6 +52,8 @@ function HomePage() {
 
 	return (
 		<>
+
+
 			Explore or Join a League
 			{leagueArray?.map((league) => {
 				// if (parseInt(id) === league.id) {
@@ -61,50 +63,42 @@ function HomePage() {
 							<span>{league.name} </span>
 							<span>(#{league.id}) </span>
 							<br />
-							<span>user {league.admin_id} </span>
+							<span>Comissoner: user {league.admin_id} </span>
 							<br />
 							<span>{dateConverter(league.created_at)}</span>
 							<p />
 						</NavLink>
+						{/* {league ? <TeamCreate league={league} /> : <TeamCreate league={league} />} */}
 
+						{/* not working */}
+						{teamArray?.map((team) => {
+							let joined = true;
+							if (team.league_id === league.id) {
+								// if(team.user_id === sessionUser.id ) joined = true;
+								return (
+									<>
+										<div
+											key={team.id}
+											className="team-divider"
+										>
+											<span>{team.name}</span>
+										</div>
+									</>
+								);
+							} else if (!joined) {
+								console.log("line86 ", joined)
+								return(
+								<>
+									<TeamCreate league={league} />
+								</>)
+							}
+						})}
+						<TeamCreate league={league} />
 
-
-
-
-						{/* {teamArray?.map((team) => {
-
-				return (
-					<div key={team.id} className="team-divider">
-
-							<span>{league.name} </span>
-						<OpenModalButton
-							buttonText="Join"
-							modalComponent={<TeamCreateModal league={league} />}
-						/>
-					</div>
-				);
-
-			})} */}
-
-{/* <OpenModalButton
+						{/* <OpenModalButton
 							buttonText="Join"
 							modalComponent={<TeamCreateModal league={league} />}
 						/> */}
-
-
-
-
-
-						<TeamCreate league={league}/>
-
-
-
-
-
-
-
-
-
 
 					</div>
 				);
