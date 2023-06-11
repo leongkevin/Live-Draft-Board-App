@@ -33,10 +33,31 @@ function LeaguesPage(id) {
 
 	return (
 		<>
-			Comissioner Leagues:
+
+			Comissioner:
 			{leagueArray?.map((league) => {
 				// console.log(parseInt(league.id))
 				if (parseInt(sessionUser?.id) === league.admin_id) {
+				return (
+					<div key={league.id} className='league-divider'>
+						<NavLink
+							to={`/leagues/${league.id}`}
+							key={league.id}
+						>
+							<span>{league.name} </span>
+							<span>(#{league.id}) </span><br/>
+							<span>user {league.admin_id} </span><br/>
+              <span>{dateConverter(league.created_at)}</span><p/>
+						</NavLink>
+
+					</div>
+				);
+				}
+			})}
+			
+			{leagueArray?.map((league) => {
+				// console.log(parseInt(league.id))
+				if (parseInt(sessionUser?.id) !== league.admin_id) {
 				return (
 					<div key={league.id} className='league-divider'>
 						<NavLink

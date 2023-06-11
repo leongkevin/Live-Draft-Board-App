@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
 				<button>Home</button>
 			</NavLink>
 			<NavLink exact to="/leagues">
-				<button>Leagues</button>
+				<button>My Leagues</button>
 			</NavLink>
 
 			{isLoaded && <ProfileButton user={sessionUser} />}

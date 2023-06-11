@@ -40,12 +40,13 @@ function LeaguePage() {
 				if (
 					parseInt(sessionUser?.id) === league.admin_id &&
 					league.id === parseInt(league_id)
+
 				) {
 					return (
 						<div key={league.id} className="league-divider">
 							{league.name}
 							<p />
-							Commissioner tools:
+							Comissioner Tools:
 							<OpenModalButton
 								buttonText="Edit Name"
 								modalComponent={
@@ -69,10 +70,10 @@ function LeaguePage() {
 							<button
 								className="delete button"
 								onClick={() => {
-									const confirmBox = window.confirm(
+									const prompt = window.confirm(
 										'Are you sure you wish to delete this league?'
 									);
-									if (confirmBox === true) {
+									if (prompt === true) {
 										handleDeleteLeague()
 									}
 								}}

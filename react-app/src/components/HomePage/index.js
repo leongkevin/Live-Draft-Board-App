@@ -3,7 +3,6 @@ import { getLeagues } from '../../store/league';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './HomePage.css';
-import LeagueCreate from '../LeagueCreate';
 
 import OpenModalButton from '../OpenModalButton';
 import TeamCreateModal from '../TeamCreate';
@@ -104,7 +103,7 @@ function HomePage() {
 				);
 				// }
 			})}
-			<LeagueCreate />
+
 		</>
 	);
 }

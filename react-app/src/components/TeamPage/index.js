@@ -35,7 +35,7 @@ function TeamPage() {
 	}, [dispatch]);
 
 	const handleDeleteTeam = async (e) => {
-		e.preventDefault();
+		// e.preventDefault(); //not required with confirm button
 
 		dispatch(deleteTeamAction(team_id))
 		.then(history.push('/leagues'));
@@ -94,11 +94,24 @@ function TeamPage() {
 							</div>
 							<div>Season has yet to begin</div>
 							<button
+								className="delete button"
+								onClick={() => {
+									const prompt = window.confirm(
+										'Are you sure you wish to delete this league?'
+									);
+									if (prompt === true) {
+										handleDeleteTeam()
+									}
+								}}
+							>Delete Team</button>
+
+
+							{/* <button
 								className="team-divider"
 								onClick={handleDeleteTeam}
 							>
 								Delete Team
-							</button>
+							</button> */}
 							<div key={team.id} className="team-divider">
 							<OpenModalButton
 								buttonText="Update"

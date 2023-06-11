@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { createLeagueAction } from '../../store/league';
 import { useModal } from '../../context/Modal';
 
-function LeagueCreate() {
+function LeagueCreateButton() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const closeModal = useModal();
@@ -62,11 +62,11 @@ function LeagueCreate() {
 						type="submit"
 						disabled={errors.length ? true : false}
 					>
-						<h2>Create League</h2>
+						Create League
 					</button>
 				</form>
 			</div>
 		</>
 	);
 }
-export default LeagueCreate;
+export default LeagueCreateButton;
