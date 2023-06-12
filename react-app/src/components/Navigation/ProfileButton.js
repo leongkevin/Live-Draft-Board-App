@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import LeagueCreateButton from '../LeagueCreateButton';
+import { useHistory } from 'react-router-dom';
 
 function ProfileButton({ user }) {
 	const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function ProfileButton({ user }) {
 	const [email, setEmail] = useState('demo@aa.io');
 	const [password, setPassword] = useState('password');
 	const [errors, setErrors] = useState([]);
+  const history = useHistory();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -41,10 +43,12 @@ function ProfileButton({ user }) {
 
 		return () => document.removeEventListener('click', closeMenu);
 	}, [showMenu]);
-
+	// console.log(user)
 	const handleLogout = (e) => {
 		e.preventDefault();
-		dispatch(logout());
+		dispatch(logout())
+    .then(() => history.push("/"))
+    .then(() => window.location.reload(true));
 	};
 
 	const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');

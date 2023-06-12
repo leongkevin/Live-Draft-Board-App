@@ -12,7 +12,7 @@ import { useModal } from '../../context/Modal';
 import LeagueCreateButton from '../LeagueCreateButton';
 import TeamCreate from '../TeamCreate';
 
-function HomePage() {
+function HomePage({ user }) {
 	const dispatch = useDispatch();
 
 	const sessionUser = useSelector((state) => state.session.user);
@@ -81,17 +81,14 @@ function HomePage() {
 					League Name
 				</div>
 				<div className="league-divider-column-three header">
-					Team Name
+					Actions
 				</div>
 			</div>
-
 
 			{leagueArray?.map((league) => {
 				let joined;
 				let admin;
 				const userId = sessionUser?.id;
-
-
 
 				return (
 					<div key={league.id} className="league-divider">
@@ -112,9 +109,10 @@ function HomePage() {
 
 							{teamArray?.map((team) => {
 								if (
-									(parseInt(team.league_id) === parseInt(league.id) &&
-									parseInt(team.user_id) !==
-										parseInt(userId)) ||
+									(parseInt(team.league_id) ===
+										parseInt(league.id) &&
+										parseInt(team.user_id) !==
+											parseInt(userId)) ||
 									parseInt(userId) ===
 										parseInt(league.admin_id)
 								) {
@@ -162,10 +160,22 @@ function HomePage() {
 									// 		{team.name}<br/>
 									// 	</>
 									// )
-								} else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) !== parseInt(userId) ) {
-									joined = false;
-								}
 
+									// } else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) !== parseInt(userId) ) {
+									// 	joined = false;
+									// }
+
+
+
+
+								} else if (
+									// (parseInt(team.league_id) ===
+									// 	parseInt(league.id)) &&
+									// (parseInt(league.admin_id) !== parseInt(userId)) && (parseInt(team.user_id) === parseInt(userId))
+									true
+								) {
+									joined = true;
+								}
 
 								// else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) ===
 								// parseInt(userId) ) {
@@ -174,7 +184,7 @@ function HomePage() {
 							})}
 						</div>
 						<div className="league-divider-column-three">
-							{joined || admin ? (
+							{joined || admin && user ? (
 								<div className="joined-tag">
 									<i class="fa-solid fa-tags" />
 									Already Joined

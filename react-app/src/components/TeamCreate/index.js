@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { createTeamAction, getTeam } from '../../store/team';
 import { useModal } from '../../context/Modal';
 
-function TeamCreate(props) {
+function TeamCreate(props, {user}) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { closeModal } = useModal();
@@ -47,9 +47,13 @@ function TeamCreate(props) {
 		dispatch(getLeagues(leagueArray));
 	}, [dispatch]);
 
-	const handleCreateTeam = async (e) => {
+	const handleCreateTeam = async (e, user) => {
 		e.preventDefault();
 		setErrors([]);
+
+		if(!user){
+			alert("You must login to view or join the league.")
+		}
 
 		try {
 			const team = await dispatch(
@@ -75,7 +79,7 @@ function TeamCreate(props) {
 					</div> */}
 
 					<button
-						className="team-form-button"
+						className="action-button"
 						type="submit"
 						disabled={errors.length ? true : false}
 					>

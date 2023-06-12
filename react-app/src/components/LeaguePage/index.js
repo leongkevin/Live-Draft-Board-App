@@ -4,8 +4,9 @@ import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import './LeaguePage.css';
-
-import OpenModalButton from '../OpenModalButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBasketball } from '@fortawesome/free-solid-svg-icons';
+import OpenModalActionButton from '../OpenModalButton';
 import LeagueUpdateModal from '../LeagueUpdateModal';
 
 function LeaguePage() {
@@ -35,24 +36,60 @@ function LeaguePage() {
 
 	return (
 		<>
+			<div className="league-divider-title">Explore or Join a League</div>
+
+			<div className="league-divider header">
+				<div className="league-divider-column-one header"></div>
+
+				<div className="league-divider-column-two header">
+					League Name
+				</div>
+				<div className="league-divider-column-three header">
+					Team Name
+				</div>
+			</div>
 			{leagueArray?.map((league) => {
 				// console.log(`this is line 29: ${league_id}`)
 				if (
 					parseInt(sessionUser?.id) === league.admin_id &&
 					league.id === parseInt(league_id)
-
 				) {
 					return (
 						<div key={league.id} className="league-divider">
-							{league.name}
-							<p />
-							Comissioner Tools:
-							<OpenModalButton
-								buttonText="Edit Name"
-								modalComponent={
-									<LeagueUpdateModal league={league} />
-								}
-							/>
+							<div className="league-divider-column-one">
+								<FontAwesomeIcon icon={faBasketball} />
+							</div>
+							<div className="league-divider-column-two">
+								{league.name}
+							</div>
+							<div className="league-divider-column-three">
+								<div className="right-div">
+									Comissioner Tools:
+									<OpenModalActionButton
+										className="action-button"
+										buttonText="Click to Edit Name"
+										modalComponent={
+											<LeagueUpdateModal
+												league={league}
+											/>
+										}
+									/>{' '}
+									|
+									<button
+										className="action-button"
+										onClick={() => {
+											const prompt = window.confirm(
+												'Are you sure you wish to delete this league?'
+											);
+											if (prompt === true) {
+												handleDeleteLeague();
+											}
+										}}
+									>
+										Delete League
+									</button>
+								</div>
+							</div>
 							{/* <button
 								className="league-divider"
 								onClick={() => {
@@ -67,17 +104,6 @@ function LeaguePage() {
 							>
 								Delete League
 							</button> */}
-							<button
-								className="delete button"
-								onClick={() => {
-									const prompt = window.confirm(
-										'Are you sure you wish to delete this league?'
-									);
-									if (prompt === true) {
-										handleDeleteLeague()
-									}
-								}}
-							>Delete League</button>
 						</div>
 					);
 				}
@@ -87,15 +113,21 @@ function LeaguePage() {
 				// console.log(`this is line 39: ${team_id}`)
 				if (parseInt(league_id) === team.league_id) {
 					return (
+						<div className="league-divider">
+						<div className="league-divider-column-one">
+							<FontAwesomeIcon icon={faBasketball} />
+						</div>
 						<NavLink to={`/teams/${team.id}`} key={team.id}>
-							<div key={team.id} className="team-divider">
-								Team {team.id}
-								<br />
+							{/* <div key={team.id} className="team-divider"> */}
+								{/* Team {team.id}
+								<br /> */}
 								<span>{team.name} </span>
 								<span>(#{team.id}) </span>
 								<br />
-							</div>
+							{/* </div> */}
 						</NavLink>
+						<div className="league-divider-column-three"></div>
+						</div>
 					);
 				}
 			})}
