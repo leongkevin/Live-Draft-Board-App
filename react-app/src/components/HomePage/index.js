@@ -68,9 +68,9 @@ function HomePage() {
 	return (
 		<>
 			{/* <LeagueCreateButton /> */}
-			{/* <p /> */}
+			<p />
 
-			{league_id}
+			{/* {league_id} */}
 
 			<div className="league-divider-title">Explore or Join a League</div>
 

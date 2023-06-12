@@ -11,15 +11,22 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className="nav-bar">
-			<NavLink exact to="/">
-				<button  className="nav-bar-button" >Home</button>
-			</NavLink>
-			<NavLink exact to="/leagues">
-				<button  className="nav-bar-button">My Leagues</button>
-			</NavLink>
-
-			{isLoaded && <ProfileButton user={sessionUser} />}
-			<LeagueCreateButton/>
+			<div className="nav-bar-item">
+				<NavLink exact to="/">
+					<button className="nav-bar-button">Home</button>
+				</NavLink>
+			</div>
+			<div className="nav-bar-item">
+				<NavLink exact to="/leagues">
+					<button className="nav-bar-button">My Leagues</button>
+				</NavLink>
+			</div>
+			<div className="nav-bar-item">
+				{isLoaded && <ProfileButton user={sessionUser} />}
+			</div>
+			<div className="nav-bar-item">
+				<LeagueCreateButton />
+			</div>
 		</div>
 	);
 }
