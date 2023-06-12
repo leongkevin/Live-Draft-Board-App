@@ -48,10 +48,13 @@ function ProfileButton({ user }) {
 						src={user.profile_picture}
 					/>
 				) : ( */}
-				<i className="fas fa-user-circle" />
+
+				<i className="fas fa-user-circle fa-lg" />
+
 				{/* )} */}
 			</button>
 			<ul className={ulClassName} ref={ulRef}>
+        <div className="user-action-dropdown">
 				{user ? (
 					<>
 						<div>{user.username}</div>
@@ -64,16 +67,17 @@ function ProfileButton({ user }) {
 							buttonText="Log In"
 							onItemClick={closeMenu}
 							modalComponent={<LoginFormModal />}
-						/>
+						/><p/>
 
 						<OpenModalButton
 							buttonText="Sign Up"
 							onItemClick={closeMenu}
 							modalComponent={<SignupFormModal />}
-						/>
-						<LeagueCreateButton />
+						/><p/>
+						<LeagueCreateButton /><p/>
 					</>
 				)}
+        </div>
 			</ul>
 		</>
 	);

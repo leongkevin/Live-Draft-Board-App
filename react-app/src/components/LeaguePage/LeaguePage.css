@@ -4,3 +4,12 @@
     border-radius: 5px;
     margin: 1px;
 }
+
+.joined-tag {
+    background-color: red;
+    font-size: 12px;
+    border: 0px;
+    border-radius: 5px;
+    max-width: 7em;
+    padding: 2px;
+}

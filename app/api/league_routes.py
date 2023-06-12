@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import League, Team, db
+from app.models import League, Team, User, db, leagues_users
+from sqlalchemy.orm import joinedload
 from .lists import league_words, team_words
 from datetime import datetime
 
@@ -96,8 +97,6 @@ def update_league(id):
 @league_routes.route('/<int:id>/teams', methods=['POST'])
 @login_required
 def create_team(id):
-
-
     # team = Team.query.get(user_id)
     # print(team)
     # # print(current_user.id)
@@ -115,3 +114,50 @@ def create_team(id):
         return "Invalid integer value."
 
     return new_team.to_dict(), 201
+
+
+# @league_routes.route("/current", methods=['GET'])
+# @login_required
+# def get_all_current_as_commissioner():
+#     all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
+
+#     if not all_leagues:
+#         return {'You have not created any leagues yet'}
+
+#     my_leagues = [league.to_dict() for league in all_leagues]
+
+#     return {'Leagues': my_leagues}, 201
+
+
+@league_routes.route("comissoner", methods=['GET'])
+@login_required
+def get_all_current(id):
+    # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
+
+    # user_id = current_user.id
+    # user = User.query.get(id)
+
+    league = db.session.query(League).join(leagues_users).filter(leagues_users.c.id == 5).all()
+    print(league, "Line 130")
+
+    # if league is None:
+    #     return {'This league does not exist.'}
+    return jsonify([leagues_users.to_dict() for leagues_users in league])
+
+    # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == 5).all()
+    # my_leagues = [league.to_dict() for league in all_leagues]
+    # print(my_leagues)
+    # return {'Leagues': my_leagues}, 201
+
+
+
+
+
+# find user by admin id
+# @league_routes.route("comissoner", methods=['GET'])
+# @login_required
+# def get_by_comissoner():
+#     all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == 5).all()
+#     my_leagues = [league.to_dict() for league in all_leagues]
+#     print(my_leagues)
+#     return {'Leagues': my_leagues}, 201

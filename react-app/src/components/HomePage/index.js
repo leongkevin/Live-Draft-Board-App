@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getLeagues } from '../../store/league';
+import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './HomePage.css';
 
-import OpenModalButton from '../OpenModalButton';
-import TeamCreateModal from '../TeamCreate';
 import TeamCreate from '../TeamCreate';
 
 function HomePage() {
@@ -20,6 +19,7 @@ function HomePage() {
 
 	useEffect(() => {
 		dispatch(getLeagues(leagueArray));
+		dispatch(getTeams(teamArray));
 	}, [dispatch]);
 
 	const dateConverter = (dateString) => {
@@ -51,11 +51,9 @@ function HomePage() {
 
 	return (
 		<>
-
-
 			Explore or Join a League
 			{leagueArray?.map((league) => {
-				// if (parseInt(id) === league.id) {
+				let joined = false;
 				return (
 					<div key={league.id} className="league-divider">
 						<NavLink to={`/leagues/${league.id}`} key={league.id}>
@@ -67,43 +65,33 @@ function HomePage() {
 							<span>{dateConverter(league.created_at)}</span>
 							<p />
 						</NavLink>
-						{/* {league ? <TeamCreate league={league} /> : <TeamCreate league={league} />} */}
 
-						{/* not working */}
 						{teamArray?.map((team) => {
-							let joined = true;
-							if (team.league_id === league.id) {
-								// if(team.user_id === sessionUser.id ) joined = true;
-								return (
-									<>
-										<div
-											key={team.id}
-											className="team-divider"
-										>
-											<span>{team.name}</span>
-										</div>
-									</>
+							if (
+								team.league_id === league.id &&
+								parseInt(team.user_id) !==
+									parseInt(sessionUser.id)
+							) {
+								console.log(
+									parseInt(team.user_id) ===
+										parseInt(sessionUser.id)
 								);
-							} else if (!joined) {
-								console.log("line86 ", joined)
-								return(
-								<>
-									<TeamCreate league={league} />
-								</>)
+								if (
+									parseInt(team.user_id) !==
+									parseInt(sessionUser.id)
+								) {
+									joined = true;
+								}
 							}
 						})}
-						<TeamCreate league={league} />
-
-						{/* <OpenModalButton
-							buttonText="Join"
-							modalComponent={<TeamCreateModal league={league} />}
-						/> */}
-
+						{joined ? (
+							<div className="joined-tag">Already Joined</div>
+						) : (
+							<TeamCreate league={league} />
+						)}
 					</div>
 				);
-				// }
 			})}
-
 		</>
 	);
 }

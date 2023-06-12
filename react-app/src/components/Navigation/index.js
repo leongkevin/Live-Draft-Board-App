@@ -10,10 +10,10 @@ function Navigation({ isLoaded }) {
 	return (
 		<div className="nav-bar">
 			<NavLink exact to="/">
-				<button>Home</button>
+				<button  className="nav-bar-button" >Home</button>
 			</NavLink>
 			<NavLink exact to="/leagues">
-				<button>My Leagues</button>
+				<button  className="nav-bar-button">My Leagues</button>
 			</NavLink>
 
 			{isLoaded && <ProfileButton user={sessionUser} />}
