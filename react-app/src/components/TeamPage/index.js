@@ -43,12 +43,27 @@ function TeamPage() {
 
 	let isDrafted = false;
 
+
 	return (
 		<>
+
+<div className="league-divider-title">Explore or Join a League</div>
+
+<div className="league-divider header">
+	<div className="league-divider-column-one header"></div>
+
+	<div className="league-divider-column-two header">
+		Player Name
+	</div>
+	<div className="league-divider-column-three header">
+		Stats
+	</div>
+</div>
+
 			{draftsArray?.map((draft) => {
 				if (draft.team_id === parseInt(team_id)) {
 					isDrafted = true;
-					console.log(draft.team_id === parseInt(team_id))
+					// console.log(draft.team_id === parseInt(team_id))
 				}
 			})}
 			{teamArray?.map((team) => {

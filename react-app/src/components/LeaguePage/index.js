@@ -36,7 +36,7 @@ function LeaguePage() {
 
 	return (
 		<>
-			<div className="league-divider-title">Explore or Join a League</div>
+			<div className="league-divider-title">League</div>
 
 			<div className="league-divider header">
 				<div className="league-divider-column-one header"></div>
@@ -45,7 +45,7 @@ function LeaguePage() {
 					League Name
 				</div>
 				<div className="league-divider-column-three header">
-					Team Name
+					Comissioner Tools:
 				</div>
 			</div>
 			{leagueArray?.map((league) => {
@@ -64,7 +64,7 @@ function LeaguePage() {
 							</div>
 							<div className="league-divider-column-three">
 								<div className="right-div">
-									Comissioner Tools:
+
 									<OpenModalActionButton
 										className="action-button"
 										buttonText="Click to Edit Name"

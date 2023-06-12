@@ -23,6 +23,8 @@ function ProfileButton({ user }) {
 		if (data) {
 			setErrors(data);
 		}
+    history.push("/")
+    window.location.reload(true)
 	};
 
 	const openMenu = () => {

@@ -42,7 +42,7 @@ function App() {
           <Route exact path="/teams/:team_id">
             <TeamPage />
           </Route>
-          <Route exact path="/teams/">
+          <Route exact path="/teams">
             <TeamsPage />
           </Route>
 
