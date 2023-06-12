@@ -52,7 +52,7 @@ function TeamCreate(props, {user}) {
 		setErrors([])
 		// .then(() => window.location.reload(true))
 
-		if(!user){
+		if(!sessionUser){
 			alert("You must login to view or join the league.")
 		}
 
