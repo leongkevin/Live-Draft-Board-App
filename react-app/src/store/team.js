@@ -35,10 +35,10 @@ const deleteTeam = (teamId) => ({
 export const getTeams = () => async (dispatch) => {
 	const response = await fetch(`/api/teams`);
 	const teams = await response.json();
-	console.log(teams)
+	// console.log(teams)
 	try {
 		const response = await fetch('/api/teams');
-		console.log(response)
+		// console.log(response)
 		if (response.ok) {
 			const data = await response.json();
 			// console.log('getTeams.line 17', teams);

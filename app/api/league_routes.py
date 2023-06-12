@@ -116,38 +116,49 @@ def create_team(id):
     return new_team.to_dict(), 201
 
 
-# @league_routes.route("/current", methods=['GET'])
-# @login_required
-# def get_all_current_as_commissioner():
-#     all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
-
-#     if not all_leagues:
-#         return {'You have not created any leagues yet'}
-
-#     my_leagues = [league.to_dict() for league in all_leagues]
-
-#     return {'Leagues': my_leagues}, 201
-
-
-@league_routes.route("comissoner", methods=['GET'])
+@league_routes.route('/<int:id>/teams', methods=['GET'])
 @login_required
-def get_all_current(id):
-    # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
+def get_teams_for_league(id):
+    # Load teams of current league
+    teams = Team.query.filter_by(league_id=id).all()
+    my_leagues = [team.to_dict() for team in teams]
 
-    # user_id = current_user.id
-    # user = User.query.get(id)
+    return {'Leagues': my_leagues}, 201
 
-    league = db.session.query(League).join(leagues_users).filter(leagues_users.c.id == 5).all()
-    print(league, "Line 130")
 
-    # if league is None:
-    #     return {'This league does not exist.'}
-    return jsonify([leagues_users.to_dict() for leagues_users in league])
 
-    # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == 5).all()
-    # my_leagues = [league.to_dict() for league in all_leagues]
-    # print(my_leagues)
-    # return {'Leagues': my_leagues}, 201
+@league_routes.route("/comish", methods=['GET'])
+@login_required
+def get_all_current_as_commissioner():
+    all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
+
+    if not all_leagues:
+        return {'You have not created any leagues yet'}
+
+    my_leagues = [league.to_dict() for league in all_leagues]
+
+    return {'Leagues': my_leagues}, 201
+
+
+# @league_routes.route("comissoner", methods=['GET'])
+# @login_required
+# def get_all_current(id):
+#     # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
+
+#     # user_id = current_user.id
+#     # user = User.query.get(id)
+
+#     league = db.session.query(League).join(leagues_users).filter(leagues_users.c.id == 5).all()
+#     print(league, "Line 130")
+
+#     # if league is None:
+#     #     return {'This league does not exist.'}
+#     return jsonify([leagues_users.to_dict() for leagues_users in league])
+
+#     # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == 5).all()
+#     # my_leagues = [league.to_dict() for league in all_leagues]
+#     # print(my_leagues)
+#     # return {'Leagues': my_leagues}, 201
 
 
 

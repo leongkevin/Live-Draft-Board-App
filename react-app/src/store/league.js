@@ -47,7 +47,7 @@ export const getLeagues = () => async (dispatch) => {
 	}
 };
 
-// not tested
+
 export const getLeagueAction = (leagueId) => async (dispatch) => {
 	const response = await fetch(`/api/leagues/${leagueId}`);
 
@@ -58,7 +58,18 @@ export const getLeagueAction = (leagueId) => async (dispatch) => {
 	}
 };
 
-// not tested
+export const getLeagueCurrentAction = () => async (dispatch) => {
+	const response = await fetch(`/api/leagues/current`);
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadLeagues());
+		return data;
+	}
+};
+
+
+
 export const createLeagueAction = (data) => async (dispatch) => {
 	console.log(data)
 	try {
@@ -80,7 +91,7 @@ export const createLeagueAction = (data) => async (dispatch) => {
 	}
 };
 
-// not tested
+
 export const updateLeagueAction = (league) => async (dispatch) => {
 	console.log(league)
 	const response = await fetch(`/api/leagues/${league.id}`, {

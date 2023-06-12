@@ -18,7 +18,7 @@ function TeamCreate(props) {
 	const teamObject = useSelector((state) => state.teamReducer);
 	const teamArray = Object.values(teamObject);
 
-	console.log(teamObject)
+	// console.log(teamObject)
 	// console.log(props)
 
 	const handleCreateTeam = async (e) => {
@@ -56,7 +56,7 @@ function TeamCreate(props) {
 						type="submit"
 						disabled={errors.length ? true : false}
 					>
-						<h2>Join League</h2>
+						Join League
 					</button>
 				</form>
 			</div>

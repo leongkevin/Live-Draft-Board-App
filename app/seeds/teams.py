@@ -16,7 +16,12 @@ def seed_teams():
         Team(name="Jesse's Unyielding Team", user_id=10, league_id=1),
         Team(name="Philip's Flawless Team", user_id=11, league_id=1),
         Team(name="Kristen's Dauntless Team", user_id=12, league_id=1),
+        Team(name="Kevin's Gifted Team", user_id=2, league_id=2),
         Team(name="Demo's Dauntless Team", user_id=1, league_id=2),
+        # Team(name="James's Pioneering Team", user_id=3, league_id=3),
+        # Team(name="Crystal's Enigmatic Team", user_id=4, league_id=4),
+        # Team(name="Bill's Phenomenal Team", user_id=5, league_id=5),
+        # Team(name="Ethan's Explosive Team", user_id=6, league_id=6),
     ]
 
     for el in teams:

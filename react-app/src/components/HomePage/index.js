@@ -4,7 +4,10 @@ import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './HomePage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBasketball } from '@fortawesome/free-solid-svg-icons';
 
+import LeagueCreateButton from '../LeagueCreateButton';
 import TeamCreate from '../TeamCreate';
 
 function HomePage() {
@@ -51,44 +54,66 @@ function HomePage() {
 
 	return (
 		<>
-			Explore or Join a League
+			<LeagueCreateButton />
+			<p />
+			<div className="league-divider-title">Explore or Join a League</div>
 			{leagueArray?.map((league) => {
 				let joined = false;
+				const userId = sessionUser?.id;
+
 				return (
 					<div key={league.id} className="league-divider">
-						<NavLink to={`/leagues/${league.id}`} key={league.id}>
-							<span>{league.name} </span>
-							<span>(#{league.id}) </span>
-							<br />
-							<span>Comissoner: user {league.admin_id} </span>
-							<br />
-							<span>{dateConverter(league.created_at)}</span>
-							<p />
-						</NavLink>
+						<div className="league-divider-column-one">
+							<FontAwesomeIcon icon={faBasketball} />
+						</div>
+						<div className="league-divider-column-two">
+							<NavLink
+								to={`/leagues/${league.id}`}
+								key={league.id}
+							>
+								<span>{league.name} </span>
+								<br />
+								{/* <span>{dateConverter(league.created_at)}</span> */}
+								{/* <p /> */}
+							</NavLink>
 
-						{teamArray?.map((team) => {
-							if (
-								team.league_id === league.id &&
-								parseInt(team.user_id) !==
-									parseInt(sessionUser.id)
-							) {
-								console.log(
-									parseInt(team.user_id) ===
-										parseInt(sessionUser.id)
-								);
+							{teamArray?.map((team) => {
 								if (
+									team.league_id === league.id &&
 									parseInt(team.user_id) !==
-									parseInt(sessionUser.id)
+										parseInt(sessionUser.id)
 								) {
-									joined = true;
+									if (
+										parseInt(team.user_id) !==
+											parseInt(userId)
+										// 	&&
+										// parseInt(team.league_id) ===
+										// 	parseInt(league.id)
+									) {
+
+										console.log(team.name)
+										console.log(team.user_id)
+
+										joined = true;
+									}
+									// return (
+									// 	<>
+									// 		{team.name}<br/>
+									// 	</>
+									// )
 								}
-							}
-						})}
-						{joined ? (
-							<div className="joined-tag">Already Joined</div>
-						) : (
-							<TeamCreate league={league} />
-						)}
+							})}
+						</div>
+						<div className="league-divider-column-three">
+							{joined ? (
+								<div className="joined-tag">
+									<i class="fa-solid fa-tags" />
+									Already Joined
+								</div>
+							) : (
+								<TeamCreate league={league} />
+							)}
+						</div>
 					</div>
 				);
 			})}
