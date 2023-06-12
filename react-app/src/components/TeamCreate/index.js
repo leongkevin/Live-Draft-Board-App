@@ -50,7 +50,7 @@ function TeamCreate(props, {user}) {
 	const handleCreateTeam = async (e, user) => {
 		e.preventDefault();
 		setErrors([])
-		.then(() => window.location.reload(true))
+		// .then(() => window.location.reload(true))
 
 		if(!user){
 			alert("You must login to view or join the league.")
