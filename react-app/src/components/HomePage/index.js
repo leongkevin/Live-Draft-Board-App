@@ -193,6 +193,7 @@ function HomePage({ user }) {
 							) : (
 								<TeamCreate league={league} />
 							)}
+							<TeamCreate league={league} />
 						</div>
 					</div>
 				);
