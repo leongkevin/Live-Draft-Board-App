@@ -1,6 +1,7 @@
 // constant
 const LOAD_LEAGUES = '/LEAGUES/LOAD_LEAGUES';
 const LOAD_LEAGUE = '/LEAGUES/LOAD_LEAGUE';
+// const LOAD_TEAMS = '/LEAGUES/LOAD_TEAMS';
 const POST_LEAGUE = '/LEAGUE/POST_LEAGUE';
 const UPDATE_LEAGUE = '/LEAGUE/UPDATE_LEAGUE';
 const DELETE_LEAGUE = '/LEAGUE/DELETE_LEAGUE';
@@ -15,6 +16,11 @@ const loadLeague = (league) => ({
 	type: LOAD_LEAGUE,
 	payload: league,
 });
+
+// const loadTeams = (league) => ({
+// 	type: LOAD_TEAMS,
+// 	payload: league,
+// });
 
 const postLeague = (league) => ({
 	type: POST_LEAGUE,
@@ -58,16 +64,15 @@ export const getLeagueAction = (leagueId) => async (dispatch) => {
 	}
 };
 
-export const getLeagueCurrentAction = () => async (dispatch) => {
-	const response = await fetch(`/api/leagues/current`);
-
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(loadLeagues());
-		return data;
-	}
-};
-
+// export const getTeamsOfLeagueAction = (leagueId) => async (dispatch) => {
+// 	const response = await fetch(`/api/leagues/${leagueId}/teams`);
+// 	console.log(response)
+// 	if (response.ok) {
+// 		const data = await response.json();
+// 		dispatch(loadTeams(leagueId));
+// 		return data;
+// 	}
+// };
 
 
 export const createLeagueAction = (data) => async (dispatch) => {
@@ -142,7 +147,10 @@ const leagueReducer = (state = initialState, action) => {
 			const newState = { ...state };
 			return { ...newState, [action.payload.id]: action.payload };
 		}
-
+		// case LOAD_TEAMS: {
+		// 	const newState = { ...state };
+		// 	return { ...newState, [action.payload.id]: action.payload };
+		// }
 		case POST_LEAGUE: {
 			const newState = { ...state };
 			return { ...newState, [action.payload.id]: action.payload };

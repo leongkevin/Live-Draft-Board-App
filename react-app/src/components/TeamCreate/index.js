@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getLeagues } from '../../store/league';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createTeamAction } from '../../store/team';
+import { createTeamAction, getTeam } from '../../store/team';
 import { useModal } from '../../context/Modal';
 
 function TeamCreate(props) {
@@ -14,6 +15,8 @@ function TeamCreate(props) {
 
 	const sessionUser = useSelector((state) => state.session?.user);
 
+	const leagueObject = useSelector((state) => state.leagueReducer);
+	const leagueArray = Object.values(leagueObject);
 
 	const teamObject = useSelector((state) => state.teamReducer);
 	const teamArray = Object.values(teamObject);
@@ -21,12 +24,32 @@ function TeamCreate(props) {
 	// console.log(teamObject)
 	// console.log(props)
 
+	// console.log(leagueArray[3-1]?.admin_id)
+	// console.log(teamArray)
+	// let joined;
+	// {
+	// 	teamArray?.map((team) => {
+	// 		if (
+	// 			parseInt(team.league_id) === parseInt(props.league.id) &&
+	// 			parseInt(team.user_id) === parseInt(sessionUser?.id)
+	// 		) {
+	// 			joined = true;
+	// 		}
+	// 		// console.log((parseInt(team.league_id) === parseInt(props.league.id)) && parseInt(team.user_id) === parseInt(sessionUser?.id))
+	// 		// console.log(parseInt(team.league_id))
+	// 		// console.log(parseInt(props.league.id))
+	// 		// console.log(parseInt(team.user_id))
+	// 		// console.log(parseInt(sessionUser?.id))
+	// 	});
+	// }
+
+	useEffect(() => {
+		dispatch(getLeagues(leagueArray));
+	}, [dispatch]);
+
 	const handleCreateTeam = async (e) => {
 		e.preventDefault();
 		setErrors([]);
-		// if(1){
-		// 	alert("Nah")
-		// }
 
 		try {
 			const team = await dispatch(
@@ -35,7 +58,7 @@ function TeamCreate(props) {
 					league_id: props.league.id,
 				})
 			);
-			closeModal();
+			history.push(`/leagues/${props.league.id}`);
 		} catch (errors) {
 			alert(errors);
 		}
@@ -44,12 +67,12 @@ function TeamCreate(props) {
 		<>
 			<div className="team">
 				<form className="team-form" onSubmit={handleCreateTeam}>
-					{errors.length ? <h3>Errors</h3> : ''}
+					{/* {errors.length ? <h3>Errors</h3> : ''}
 					<div className="errors">
 						{errors.map((error, idx) => (
 							<li key={idx}>{errors}</li>
 						))}
-					</div>
+					</div> */}
 
 					<button
 						className="team-form-button"

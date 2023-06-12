@@ -18,3 +18,8 @@
 .icon {
     background-color: orange;
 }
+
+.header {
+    background-color: silver;
+    border-bottom: 10px;
+}

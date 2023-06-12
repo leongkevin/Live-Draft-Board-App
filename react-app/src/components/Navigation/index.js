@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import TeamCreate from '../TeamCreate';
+import LeagueCreateButton from '../LeagueCreateButton';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -17,6 +19,7 @@ function Navigation({ isLoaded }) {
 			</NavLink>
 
 			{isLoaded && <ProfileButton user={sessionUser} />}
+			<LeagueCreateButton/>
 		</div>
 	);
 }

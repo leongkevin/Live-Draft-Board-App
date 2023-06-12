@@ -48,7 +48,7 @@ function LeagueCreateButton() {
 	};
 	return (
 		<>
-			<div className="league">
+			{/* <div className="league"> */}
 				<form className="league-form" onSubmit={handleCreateLeague}>
 					{errors.length ? <h3>Errors</h3> : ''}
 					<div className="errors">
@@ -58,14 +58,14 @@ function LeagueCreateButton() {
 					</div>
 
 					<button
-						className="league-form-button"
+						className='nav-bar-button'
 						type="submit"
 						disabled={errors.length ? true : false}
 					>
 						Create League
 					</button>
 				</form>
-			</div>
+			{/* </div> */}
 		</>
 	);
 }
