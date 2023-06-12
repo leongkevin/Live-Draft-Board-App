@@ -81,7 +81,7 @@ function TeamPage() {
 								</span>
 							</div>
 
-							<div className="league-divider">
+							<div className="action-divider">
 								<OpenModalButton
 									className="action-button"
 									buttonText="Edit Team Name"
@@ -175,11 +175,12 @@ function TeamPage() {
 
 
 			)}
+			<p/>
 			{draftsArray?.map((draft) => {
 				if (draft.team_id === parseInt(team_id)) {
 					return (
 						<div key={draft.id} className="draft-divider">
-							<span>{draft.id}. </span>
+							{/* <span>{draft.id}. </span> */}
 							{playersArray?.map((player) => {
 								if (player.id === draft.player_id) {
 									return (
@@ -192,7 +193,7 @@ function TeamPage() {
 													pathname: `https://${player.stats}`,
 												}}
 												target="_blank"
-											>
+											><span>Drafted at #{draft.id}. </span>
 												<span>{player.full_name} </span>
 												<br />
 												<img

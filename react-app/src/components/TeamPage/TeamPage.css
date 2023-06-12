@@ -28,7 +28,11 @@
     justify-content: center;
 }
 
-
+.action-divider {
+    justify-content: center;
+    display: flex;
+    background-color: gray;
+}
 
 .team-divider {
     display: flex;
@@ -55,3 +59,33 @@
     border-radius: 4px;
     background-color: gray;
 }
+
+.draft-divider {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+
+a:link {
+    color: rgb(27, 6, 78);
+    text-decoration: none;
+  }
+
+  /* visited link */
+  a:visited {
+    color: rgb(27, 6, 78);
+    text-decoration: none;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: rgb(27, 6, 78);
+    text-decoration: none;
+  }
+
+  /* selected link */
+  a:active {
+    color: rgb(27, 6, 78);
+    text-decoration: none;
+  }
