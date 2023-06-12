@@ -38,7 +38,7 @@ function TeamUpdateModal(props) {
 			<div className="team">
 				<h2>Update Team Name</h2>
 
-				<form className="team-form" onSubmit={handleUpdateTeam}>
+				<form className="action-button team-button" onSubmit={handleUpdateTeam}>
 					{errors.length ? <h3>Errors</h3> : ''}
 					<div className="errors">
 						{errors.map((error, idx) => (

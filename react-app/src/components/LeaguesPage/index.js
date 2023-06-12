@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { getTeams } from '../../store/team';
 import './LeaguesPage.css';
-
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBasketball } from '@fortawesome/free-solid-svg-icons';
+
+
 
 function LeaguesPage(id) {
 	const dispatch = useDispatch();
@@ -15,8 +17,11 @@ function LeaguesPage(id) {
 	const leagueArray = Object.values(leagueObject);
 	const teamObject = useSelector((state) => state.teamReducer);
 	const teamArray = Object.values(teamObject);
+	const history = useHistory();
 
 	const { league_id } = useParams();
+
+	// if (!sessionUser) history.push('/');
 
 	useEffect(() => {
 		dispatch(getLeagues(leagueArray));

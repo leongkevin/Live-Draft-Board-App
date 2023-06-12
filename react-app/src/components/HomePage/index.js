@@ -30,6 +30,7 @@ function HomePage({ user }) {
 
 	// console.log(leagueArr);
 
+
 	const league_id = leagueArray[0]?.id;
 
 	useEffect(() => {
@@ -111,7 +112,7 @@ function HomePage({ user }) {
 								if (
 									(parseInt(team.league_id) ===
 										parseInt(league.id) &&
-										parseInt(team.user_id) !==
+										parseInt(team.user_id) ===
 											parseInt(userId)) ||
 									parseInt(userId) ===
 										parseInt(league.admin_id)
@@ -168,13 +169,13 @@ function HomePage({ user }) {
 
 
 
-								} else if (
-									// (parseInt(team.league_id) ===
-									// 	parseInt(league.id)) &&
-									// (parseInt(league.admin_id) !== parseInt(userId)) && (parseInt(team.user_id) === parseInt(userId))
-									true
-								) {
-									joined = true;
+								// } else if (
+								// 	// (parseInt(team.league_id) ===
+								// 	// 	parseInt(league.id)) &&
+								// 	// (parseInt(league.admin_id) !== parseInt(userId)) && (parseInt(team.user_id) === parseInt(userId))
+								// 	true
+								// ) {
+								// 	joined = true;
 								}
 
 								// else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) ===

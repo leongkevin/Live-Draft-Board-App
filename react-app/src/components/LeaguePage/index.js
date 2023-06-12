@@ -31,11 +31,16 @@ function LeaguePage() {
 
 	const handleDeleteLeague = async (e) => {
 		// e.preventDefault(); //not required with confirm button
-		dispatch(deleteLeagueAction(league_id)).then(history.push('/leagues'));
+		dispatch(deleteLeagueAction(league_id))
+		if(sessionUser){
+			history.push('/leagues')
+		}
+		// .then(history.push('/leagues'));
 	};
 
 	return (
 		<>
+		<p/>
 			<div className="league-divider-title">League</div>
 
 			<div className="league-divider header">
@@ -45,13 +50,13 @@ function LeaguePage() {
 					League Name
 				</div>
 				<div className="league-divider-column-three header">
-					Comissioner Tools:
+				{sessionUser?"Comissioner Tools":<></>}
 				</div>
 			</div>
 			{leagueArray?.map((league) => {
 				// console.log(`this is line 29: ${league_id}`)
 				if (
-					parseInt(sessionUser?.id) === league.admin_id &&
+					// parseInt(sessionUser?.id) === league.admin_id &&
 					league.id === parseInt(league_id)
 				) {
 					return (
@@ -62,7 +67,7 @@ function LeaguePage() {
 							<div className="league-divider-column-two">
 								{league.name}
 							</div>
-							<div className="league-divider-column-three">
+							{(parseInt(sessionUser?.id) === league.admin_id)?							<div className="league-divider-column-three">
 								<div className="right-div">
 
 									<OpenModalActionButton
@@ -89,7 +94,7 @@ function LeaguePage() {
 										Delete League
 									</button>
 								</div>
-							</div>
+							</div>:<></>}
 							{/* <button
 								className="league-divider"
 								onClick={() => {

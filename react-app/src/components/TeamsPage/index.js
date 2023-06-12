@@ -17,14 +17,14 @@ function TeamPage() {
 	const teamsObject = useSelector((state) => state.teamReducer);
 	const teamsArray = Object.values(teamsObject);
 
-	console.log(teamsObject)
+	console.log(teamsObject);
 
 	useEffect(() => {
 		dispatch(getTeams(teamsArray));
 	}, [dispatch]);
-
 	return (
 		<>
+			<p />
 			Team
 			{teamsArray?.map((team) => {
 				// console.log(`this is line 39: ${team_id}`)

@@ -5,3 +5,53 @@
 .player-image {
     max-width: 120px;
 }
+
+.league-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
+
+    border-radius: 4px;
+    min-width: 400px;
+    max-width: 1000px;
+    /* height: 300px; */
+    border: 3px;
+    padding: 0;
+    margin: 1px;
+
+    font-size: 16px;
+    margin: 0 auto;
+    display: grid;
+    color: white;
+    justify-content: center;
+}
+
+
+
+.team-divider {
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* align-self: center; */
+    grid-template-columns: 20px auto auto;
+    border-radius: 4px;
+    min-width: 400px;
+    height: 20px;
+    /* max-width: 1000px; */
+    background-color: gray;
+    /* grid-template-columns: 100px 100px 100px;
+    grid-template-rows: auto; */
+}
+
+.team-divider-column-one {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-button {
+    border-radius: 4px;
+    background-color: gray;
+}

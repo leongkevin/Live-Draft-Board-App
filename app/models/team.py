@@ -21,6 +21,10 @@ class Team(db.Model):
 
     players = db.relationship('Draft', back_populates='team', passive_deletes=True)
 
+
+    # # new stuff peter added
+    # league = db.relationship('League', back_populates = "teams")
+
     # player_association = db.relationship('TeamPlayer', back_populates='team')
     # players = association_proxy('player_association', 'player')
 

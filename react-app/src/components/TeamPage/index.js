@@ -22,7 +22,7 @@ function TeamPage() {
 	const draftsObject = useSelector((state) => state.draftReducer);
 	const draftsArray = Object.values(draftsObject);
 
-	const history = useHistory()
+	const history = useHistory();
 	const { team_id } = useParams();
 	// console.log(draftsArray)
 	// console.log(teamArray)
@@ -37,17 +37,15 @@ function TeamPage() {
 	const handleDeleteTeam = async (e) => {
 		// e.preventDefault(); //not required with confirm button
 
-		dispatch(deleteTeamAction(team_id))
-		.then(history.push('/leagues'));
+		dispatch(deleteTeamAction(team_id)).then(history.push('/leagues'));
 	};
 
 	let isDrafted = false;
 
-
 	return (
 		<>
-
-<div className="league-divider-title">Explore or Join a League</div>
+			<p />
+			{/* <div className="league-divider-title">Team</div>
 
 <div className="league-divider header">
 	<div className="league-divider-column-one header"></div>
@@ -58,7 +56,7 @@ function TeamPage() {
 	<div className="league-divider-column-three header">
 		Stats
 	</div>
-</div>
+</div> */}
 
 			{draftsArray?.map((draft) => {
 				if (draft.team_id === parseInt(team_id)) {
@@ -67,7 +65,7 @@ function TeamPage() {
 				}
 			})}
 			{teamArray?.map((team) => {
-					console.log(isDrafted)
+				console.log(isDrafted);
 				if (
 					parseInt(sessionUser?.id) === team.user_id &&
 					parseInt(team_id) === team.id &&
@@ -75,22 +73,25 @@ function TeamPage() {
 				) {
 					return (
 						<>
-							<div key={team.id} className="team-divider">
-								Team {team.id}
-								<br />
-								<span>{team.name} </span>
-								<span>(#{team.id}) </span>
-								<br />
+							<div key={team.id} className="league-divider-title">
+								{/* Team {team.id}
+								<br /> */}
+								<span>
+									{team.name} (#{team.id})
+								</span>
 							</div>
 
-							<div key={team.id} className="team-divider">
-							<OpenModalButton
-								buttonText="Update"
-								modalComponent={
-									<TeamUpdateModal team={team} />
-								}
-							/>
+							<div className="league-divider">
+								<OpenModalButton
+									className="action-button"
+									buttonText="Edit Team Name"
+									modalComponent={
+										<TeamUpdateModal team={team} />
+									}
+								/>
 							</div>
+							{/* <div className="league-divider-column-three header"> */}
+							{/* </div> */}
 						</>
 					);
 				} else if (
@@ -100,45 +101,80 @@ function TeamPage() {
 				) {
 					return (
 						<>
-							<div key={team.id} className="team-divider">
-								Team {team.id}
-								<br />
-								<span>{team.name} </span>
-								<span>(#{team.id}) </span>
-								<br />
+							<div key={team.id} className="league-divider-title">
+								{/* Team {team.id}
+								<br /> */}
+								<span>
+									{team.name} (#{team.id})
+								</span>
 							</div>
-							<div>Season has yet to begin</div>
+
+							<div className="league-banner">
+								Season has yet to begin
+							</div>
+
+
+							<div className="team-divider">
+							<div className="team-divider-column-one">
+							{sessionUser?"Team Tools: ":<></>}
+							</div>
+
+							<div className="team-divider-column-one">
 							<button
-								className="delete button"
+								className="action-button team-button"
 								onClick={() => {
 									const prompt = window.confirm(
 										'Are you sure you wish to delete this league?'
 									);
 									if (prompt === true) {
-										handleDeleteTeam()
+										handleDeleteTeam();
 									}
 								}}
-							>Delete Team</button>
-
-
-							{/* <button
-								className="team-divider"
-								onClick={handleDeleteTeam}
 							>
 								Delete Team
-							</button> */}
-							<div key={team.id} className="team-divider">
-							<OpenModalButton
-								buttonText="Update"
-								modalComponent={
-									<TeamUpdateModal team={team} />
-								}
-							/>
-							</div>
+							</button></div>
+
+							| <div className="team-divider-column-one header">
+							<div key={team.id} className="action-button team-button">
+							{(sessionUser)?	<OpenModalButton
+									buttonText="Update Team Name"
+									modalComponent={
+										<TeamUpdateModal team={team} />
+									}
+								/>:<></>}</div>
+							</div></div>
 						</>
-					);
+					)
 				}
-			})}
+
+
+
+			// 	else if(parseInt(sessionUser?.id) === parseInt(team.user_id)
+			// 	&& parseInt(team_id) === parseInt(team.id)
+			// 	) {
+			// 		// history.push('/')
+			// 	// 	return(
+			// 	// 	<>
+			// 	// 	<div key={team.id} className="league-divider-title">
+			// 	// 	{/* Team {team.id}
+			// 	// 	<br /> */}
+			// 	// 	<span>
+			// 	// 		{team.name} (#{team.id})
+			// 	// 	</span>
+			// 	// </div>
+
+			// 	// <div className="league-banner">
+			// 	// 	Season has yet to begin
+			// 	// </div>
+			// 	// 	</>)
+			// 	}
+
+
+
+			}
+
+
+			)}
 			{draftsArray?.map((draft) => {
 				if (draft.team_id === parseInt(team_id)) {
 					return (

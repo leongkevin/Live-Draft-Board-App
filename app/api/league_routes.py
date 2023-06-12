@@ -108,6 +108,9 @@ def create_team(id):
 
     try:
         new_team = Team(name=F"{current_user.username}'s {team_words[random_num]} Team", user_id=current_user.id, league_id=id)
+        # user = User.query.get(id)
+
+        # new_team.league.users.append(user)
         db.session.add(new_team)
         db.session.commit()
     except ValueError:
@@ -140,20 +143,20 @@ def get_all_current_as_commissioner():
     return {'Leagues': my_leagues}, 201
 
 
-# @league_routes.route("comissoner", methods=['GET'])
-# @login_required
-# def get_all_current(id):
+@league_routes.route("/comissoner", methods=['GET'])
+@login_required
+def get_all_current():
 #     # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == current_user.id).all()
 
 #     # user_id = current_user.id
 #     # user = User.query.get(id)
 
-#     league = db.session.query(League).join(leagues_users).filter(leagues_users.c.id == 5).all()
-#     print(league, "Line 130")
+    league = db.session.query(League).join(leagues_users).filter(leagues_users.c.user_id == current_user.id).all()
+    print(league, "Line 130")
 
-#     # if league is None:
-#     #     return {'This league does not exist.'}
-#     return jsonify([leagues_users.to_dict() for leagues_users in league])
+    # if league is None:
+    #     return {'This league does not exist.'}
+    return jsonify([leagues_users.to_dict() for leagues_users in league])
 
 #     # all_leagues = League.query.options(joinedload(League.users)).filter(League.admin_id == 5).all()
 #     # my_leagues = [league.to_dict() for league in all_leagues]
