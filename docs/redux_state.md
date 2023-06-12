@@ -127,7 +127,7 @@
          full_name: "Nikola Jokic",
          first_name: "Nikola",
          last_name: "Jokic",
-         yahoo_stats: "https://sports.yahoo.com/nba/players/5352/",
+         stats: "https://sports.yahoo.com/nba/players/5352/",
          created_at: 5/20/2023,
          updated_at: 5/20/2023
       },
