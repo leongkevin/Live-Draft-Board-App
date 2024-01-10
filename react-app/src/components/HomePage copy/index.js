@@ -202,4 +202,4 @@ function HomePage({ user }) {
 	);
 }
 
-export default HomePage;
+export default HomePageCopy;

@@ -3,7 +3,6 @@ import { getLeagues } from '../../store/league';
 import { getTeams } from '../../store/team';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import './HomePage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBasketball } from '@fortawesome/free-solid-svg-icons';
 import { createTeamAction } from '../../store/team';
@@ -11,6 +10,9 @@ import { useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import LeagueCreateButton from '../LeagueCreateButton';
 import TeamCreate from '../TeamCreate';
+
+import './HomePage.css';
+
 
 function HomePage({ user }) {
 	const dispatch = useDispatch();
@@ -68,21 +70,17 @@ function HomePage({ user }) {
 
 	return (
 		<>
-
-
-
-
-			<div className="league-divider-title">Title</div>
-
-			<div className="league-divider header">
-
-			<LeagueCreateButton />
-			<p />
-			{/* Start the season with a live draft party with your friends and family. */}
-
+			<div className="homepage-container">
+				<div className="homepage-div">
+					<LeagueCreateButton />
+					Host a live draft with a draft board like the pros with your friends and family!
+				</div>
+				or
+				<div className="homepage-div">
+					<LeagueCreateButton />
+					Join your fantasy league's upcoming draft.
+				</div>
 			</div>
-
-
 		</>
 	);
 }
