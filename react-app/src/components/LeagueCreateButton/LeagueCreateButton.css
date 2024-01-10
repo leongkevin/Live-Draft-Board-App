@@ -1,0 +1,12 @@
+.league-create-button {
+    border-radius: 25px;
+    width: 350px;
+    height: 40px;
+    background-color: #5972ff;
+    border: 0px;
+    padding: 0;
+    margin: 1px;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+  }

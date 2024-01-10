@@ -72,18 +72,14 @@ function HomePage({ user }) {
 
 
 
-			<div className="league-divider-title">Host a live draft for your fantasy league</div>
+			<div className="league-divider-title">Title</div>
+
+			<div className="league-divider header">
+
 			<LeagueCreateButton />
 			<p />
-			<div className="league-divider header">
-				<div className="league-divider-column-one header"></div>
+			{/* Start the season with a live draft party with your friends and family. */}
 
-				<div className="league-divider-column-two header">
-					League Name
-				</div>
-				<div className="league-divider-column-three header">
-					Actions
-				</div>
 			</div>
 
 

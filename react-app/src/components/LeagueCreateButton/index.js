@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createLeagueAction } from '../../store/league';
 import { useModal } from '../../context/Modal';
+import './LeagueCreateButton.css';
 
 function LeagueCreateButton() {
 	const dispatch = useDispatch();
@@ -57,13 +58,13 @@ function LeagueCreateButton() {
 					))}
 				</div>
 				<button
-					className='nav-bar-button'
+					className='league-create-button'
 					type="submit"
 					disabled={errors.length ? true : false}
 				>
 					Create a League
 				</button>
-				Start the season with a live draft party with your friends and family.
+
 			</form>
 		</>
 	);
