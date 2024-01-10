@@ -14,8 +14,10 @@ import random
 league_routes = Blueprint('leagues', __name__)
 
 
+
+
 @league_routes.route('', methods=['GET'])
-# @login_required
+# @login_requihttps://www.bing.com/search?q=loofah%20stick&qs=ds&form=QBRE&pc=U316&=%25eManage%20Your%20Search%20History%25Ered
 def read_leagues():
     # Query for all leagues and returns them in a list of user dictionaries
     leagues = League.query.all()

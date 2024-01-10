@@ -26,9 +26,9 @@ function Navigation({ isLoaded }, { user }) {
 			<div className="nav-bar-item">
 				{isLoaded && <ProfileButton user={sessionUser} />}
 			</div>
-			{sessionUser ?<div className="nav-bar-item">
+			{/* {sessionUser ?<div className="nav-bar-item">
 				<LeagueCreateButton />
-			</div>:<></>}
+			</div>:<></>} */}
 		</div>
 	);
 }

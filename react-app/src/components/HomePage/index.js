@@ -68,13 +68,13 @@ function HomePage({ user }) {
 
 	return (
 		<>
-			{/* <LeagueCreateButton /> */}
+
+
+
+
+			<div className="league-divider-title">Host a live draft for your fantasy league</div>
+			<LeagueCreateButton />
 			<p />
-
-			{/* {league_id} */}
-
-			<div className="league-divider-title">Explore or Join a League</div>
-
 			<div className="league-divider header">
 				<div className="league-divider-column-one header"></div>
 
@@ -86,120 +86,125 @@ function HomePage({ user }) {
 				</div>
 			</div>
 
-			{leagueArray?.map((league) => {
-				let joined;
-				let admin;
-				const userId = sessionUser?.id;
 
-				return (
-					<div key={league.id} className="league-divider">
-						<div className="league-divider-column-one">
-							<FontAwesomeIcon icon={faBasketball} />
-						</div>
-						<div className="league-divider-column-two">
-							<NavLink
-								to={`/leagues/${league.id}`}
-								key={league.id}
-							>
-								<span>{league.name} </span>
-								<span>(id #{league.id}) </span>
-								<br />
-								{/* <span>{dateConverter(league.created_at)}</span> */}
-								{/* <p /> */}
-							</NavLink>
-
-							{teamArray?.map((team) => {
-								if (
-									(parseInt(team.league_id) ===
-										parseInt(league.id) &&
-										parseInt(team.user_id) ===
-											parseInt(userId)) ||
-									parseInt(userId) ===
-										parseInt(league.admin_id)
-								) {
-									joined = true;
-									// if (
-									// 	parseInt(team.user_id) ===
-									// 	parseInt(userId)
-									// 	// parseInt(team.user_id) !==
-									// 	// parseInt(userId)
-									// 	&&
-									// 	parseInt(team.user_id) ===
-									// 	parseInt(league.admin_id)
-									// 	// 	&&
-									// 	// parseInt(team.league_id) ===
-									// 	// 	parseInt(league.id)
-									// ) {
-									// 	// console.log(team)
-									// 	// console.log(team.user_id)
-									// 	console.log(
-									// 	parseInt(league.admin_id))
-									// 	joined = true;
-									// 	// console.log(joined)
-									// }
-									// if (
-									// 	// parseInt(team.user_id) ===
-									// 	// parseInt(userId)
-
-									// 	// parseInt(team.user_id) ===
-									// 	// parseInt(league.admin_id)
-
-									// 	(parseInt(team.league_id) === parseInt(league.id) &&
-									// 		parseInt(team.user_id) !==
-									// 		parseInt(userId))) {
-									// 	console.log(team.name);
-									// 	// console.log(parseInt(team.user_id) === parseInt(league.admin_id));
-									// 	// console.log(league.admin_id);
-									// 	// console.log(team.user_id);
-
-									// 	admin = true;
-									// 	// console.log(admin);
-									// }
-									// admin = true;
-									// return (
-									// 	<>
-									// 		{team.name}<br/>
-									// 	</>
-									// )
-
-									// } else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) !== parseInt(userId) ) {
-									// 	joined = false;
-									// }
-
-
-
-
-								// } else if (
-								// 	// (parseInt(team.league_id) ===
-								// 	// 	parseInt(league.id)) &&
-								// 	// (parseInt(league.admin_id) !== parseInt(userId)) && (parseInt(team.user_id) === parseInt(userId))
-								// 	true
-								// ) {
-								// 	joined = true;
-								}
-
-								// else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) ===
-								// parseInt(userId) ) {
-								// 	joined = true;
-								// }
-							})}
-						</div>
-						<div className="league-divider-column-three">
-							{joined || admin && user ? (
-								<div className="joined-tag">
-									<i class="fa-solid fa-tags" />
-									Already Joined
-								</div>
-							) : (
-								<TeamCreate league={league} />
-							)}
-							{/* <TeamCreate league={league} /> */}
-						</div>
-					</div>
-				);
-			})}
 		</>
 	);
 }
 
 export default HomePage;
+
+
+
+
+// {leagueArray?.map((league) => {
+// 	let joined;
+// 	let admin;
+// 	const userId = sessionUser?.id;
+
+// 	return (
+// 		<div key={league.id} className="league-divider">
+// 			<div className="league-divider-column-one">
+// 				<FontAwesomeIcon icon={faBasketball} />
+// 			</div>
+// 			<div className="league-divider-column-two">
+// 				<NavLink
+// 					to={`/leagues/${league.id}`}
+// 					key={league.id}
+// 				>
+// 					<span>{league.name} </span>
+// 					<span>(id #{league.id}) </span>
+// 					<br />
+// 					{/* <span>{dateConverter(league.created_at)}</span> */}
+// 					{/* <p /> */}
+// 				</NavLink>
+
+// 				{teamArray?.map((team) => {
+// 					if (
+// 						(parseInt(team.league_id) ===
+// 							parseInt(league.id) &&
+// 							parseInt(team.user_id) ===
+// 								parseInt(userId)) ||
+// 						parseInt(userId) ===
+// 							parseInt(league.admin_id)
+// 					) {
+// 						joined = true;
+// 						// if (
+// 						// 	parseInt(team.user_id) ===
+// 						// 	parseInt(userId)
+// 						// 	// parseInt(team.user_id) !==
+// 						// 	// parseInt(userId)
+// 						// 	&&
+// 						// 	parseInt(team.user_id) ===
+// 						// 	parseInt(league.admin_id)
+// 						// 	// 	&&
+// 						// 	// parseInt(team.league_id) ===
+// 						// 	// 	parseInt(league.id)
+// 						// ) {
+// 						// 	// console.log(team)
+// 						// 	// console.log(team.user_id)
+// 						// 	console.log(
+// 						// 	parseInt(league.admin_id))
+// 						// 	joined = true;
+// 						// 	// console.log(joined)
+// 						// }
+// 						// if (
+// 						// 	// parseInt(team.user_id) ===
+// 						// 	// parseInt(userId)
+
+// 						// 	// parseInt(team.user_id) ===
+// 						// 	// parseInt(league.admin_id)
+
+// 						// 	(parseInt(team.league_id) === parseInt(league.id) &&
+// 						// 		parseInt(team.user_id) !==
+// 						// 		parseInt(userId))) {
+// 						// 	console.log(team.name);
+// 						// 	// console.log(parseInt(team.user_id) === parseInt(league.admin_id));
+// 						// 	// console.log(league.admin_id);
+// 						// 	// console.log(team.user_id);
+
+// 						// 	admin = true;
+// 						// 	// console.log(admin);
+// 						// }
+// 						// admin = true;
+// 						// return (
+// 						// 	<>
+// 						// 		{team.name}<br/>
+// 						// 	</>
+// 						// )
+
+// 						// } else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) !== parseInt(userId) ) {
+// 						// 	joined = false;
+// 						// }
+
+
+
+
+// 					// } else if (
+// 					// 	// (parseInt(team.league_id) ===
+// 					// 	// 	parseInt(league.id)) &&
+// 					// 	// (parseInt(league.admin_id) !== parseInt(userId)) && (parseInt(team.user_id) === parseInt(userId))
+// 					// 	true
+// 					// ) {
+// 					// 	joined = true;
+// 					}
+
+// 					// else if(parseInt(team.league_id) !== parseInt(league.id) && parseInt(team.user_id) ===
+// 					// parseInt(userId) ) {
+// 					// 	joined = true;
+// 					// }
+// 				})}
+// 			</div>
+// 			<div className="league-divider-column-three">
+// 				{joined || admin && user ? (
+// 					<div className="joined-tag">
+// 						<i class="fa-solid fa-tags" />
+// 						Already Joined
+// 					</div>
+// 				) : (
+// 					<TeamCreate league={league} />
+// 				)}
+// 				{/* <TeamCreate league={league} /> */}
+// 			</div>
+// 		</div>
+// 	);
+// })}

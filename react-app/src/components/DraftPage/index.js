@@ -27,14 +27,9 @@ function DraftPage() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		// const results = playersArray.filter((player) =>
-		// 	player.toLowerCase().includes(searchPlayer)
-		// );
 
 		const results = playersArray.map((player) => {
-			// console.log(player.full_name);
-			console.log(player.profile_image);
-			if (player.full_name.toLowerCase().includes(searchPlayer)) {
+			if (player.full_name.toUpperCase().includes(searchPlayer) || player.full_name.toLowerCase().includes(searchPlayer)) {
 				return player.full_name;
 			}
 		});
@@ -131,11 +126,11 @@ function DraftPage() {
 					onChange={handleSearch}
 					required
 				/>
-				<ul className='search-player-list'>
+				<div className='search-player-list'>
 					{searchResults?.map((player) => (
-						<li>{player}</li>
+						<div>{player}</div>
 					))}
-				</ul>
+				</div>
 			</div>
 		</>
 	);

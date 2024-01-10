@@ -187,19 +187,19 @@ function TeamPage() {
 										<div
 											key={player.id}
 											className="player-divider"
-										>
+										><img
+													src={player.profile_image}
+													className="player-divider"
+												/><br />
 											<NavLink
 												to={{
 													pathname: `https://${player.stats}`,
 												}}
 												target="_blank"
-											><span>Drafted at #{draft.id}. </span>
+											><span>{draft.id}. </span>
 												<span>{player.full_name} </span>
-												<br />
-												<img
-													src={player.profile_image}
-													className="player-divider"
-												/>
+
+
 											</NavLink>
 										</div>
 									);

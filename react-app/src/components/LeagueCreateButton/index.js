@@ -11,6 +11,7 @@ function LeagueCreateButton() {
 
 	const [name, setName] = useState('');
 	const [adminId, setAdminId] = useState(0);
+	const [teams, setTeams] = useState(0);
 	const [draftDate, setDraftDate] = useState(new Date());
 	const [errors, setErrors] = useState([]);
 
@@ -27,7 +28,7 @@ function LeagueCreateButton() {
 		// 				admin_id: sessionUser.id,
 		// 				draft_date: draftDate,
 		// 			})
-		// 		);
+		// 		)
 		// 		// await history.push(`/leagues/${league.id}`);
 		// 		.then(closeModal)
 		// 	} catch (errors) {
@@ -38,7 +39,7 @@ function LeagueCreateButton() {
 		// try {
 			const league = await dispatch(
 				createLeagueAction({
-					// draft_date: draftDate,
+					draft_date: draftDate,
 				})
 			)
 			.then(history.push('/leagues'));
@@ -48,24 +49,22 @@ function LeagueCreateButton() {
 	};
 	return (
 		<>
-			{/* <div className="league"> */}
-				<form className="league-form" onSubmit={handleCreateLeague}>
-					{errors.length ? <h3>Errors</h3> : ''}
-					<div className="errors">
-						{errors.map((error, idx) => (
-							<li key={idx}>{errors}</li>
-						))}
-					</div>
-
-					<button
-						className='nav-bar-button'
-						type="submit"
-						disabled={errors.length ? true : false}
-					>
-						Create League
-					</button>
-				</form>
-			{/* </div> */}
+			<form className="league-form" onSubmit={handleCreateLeague}>
+				{errors.length ? <h3>Errors</h3> : ''}
+				<div className="errors">
+					{errors.map((error, idx) => (
+						<li key={idx}>{errors}</li>
+					))}
+				</div>
+				<button
+					className='nav-bar-button'
+					type="submit"
+					disabled={errors.length ? true : false}
+				>
+					Create a League
+				</button>
+				Start the season with a live draft party with your friends and family.
+			</form>
 		</>
 	);
 }

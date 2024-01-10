@@ -19,9 +19,15 @@ def seed_teams():
         Team(name="Kevin's Gifted Team", user_id=2, league_id=2),
         Team(name="Demo's Dauntless Team", user_id=1, league_id=2),
         Team(name="Demo's Explosive Team", user_id=1, league_id=6),
-        # Team(name="James's Pioneering Team", user_id=3, league_id=3),
-        # Team(name="Crystal's Enigmatic Team", user_id=4, league_id=4),
-        # Team(name="Bill's Phenomenal Team", user_id=5, league_id=5),
+        Team(name="James's Pioneering Team", user_id=3, league_id=2),
+        Team(name="Crystal's Enigmatic Team", user_id=4, league_id=2),
+        Team(name="Bill's Phenomenal Team", user_id=5, league_id=2),
+        Team(name="Robert's Explosive Team", user_id=7, league_id=2),
+        Team(name="Gabriel's Agile Team", user_id=8, league_id=2),
+        Team(name="Chris Real Team", user_id=9, league_id=2),
+        Team(name="Jesse's Gifted Team", user_id=10, league_id=2),
+        Team(name="Philip's Creative Team", user_id=11, league_id=2),
+        Team(name="Kristen's Flawless Team", user_id=12, league_id=2),
 
     ]
 
