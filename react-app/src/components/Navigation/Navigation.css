@@ -1,3 +1,11 @@
+.nav-bar-profile {
+  width: 120px;
+  height: 40px;
+  background-color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+
 .profile-dropdown {
   position: absolute;
 }
@@ -54,4 +62,3 @@
 .profile-hr {
   border: 1px solid rgb(71, 69, 69);
 }
-

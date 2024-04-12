@@ -75,11 +75,11 @@ function HomePage({ user }) {
 					<LeagueCreateButton />
 					Host a live draft with a draft board like the pros with your friends and family!
 				</div>
-				or
+				{/* or
 				<div className="homepage-div">
 					<LeagueCreateButton />
 					Join your fantasy league's upcoming draft.
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

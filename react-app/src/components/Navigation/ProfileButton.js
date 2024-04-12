@@ -58,7 +58,7 @@ function ProfileButton({ user }) {
 
 	return (
 		<>
-			<button onClick={openMenu} className="nav-bar-button">
+			<button onClick={openMenu} className="nav-bar-profile">
 				{/* {user ? (
 					<img
 						alt="profile"
@@ -111,3 +111,5 @@ function ProfileButton({ user }) {
 }
 
 export default ProfileButton;
+
+
